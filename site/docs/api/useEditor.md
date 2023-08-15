@@ -43,6 +43,7 @@ const { connectors, actions, query, ...collected } = useEditor(collector);
       ["setHidden", "(nodeId: NodeId, bool: boolean) => void", "When set to true, the User Component of the specified Node will be hidden, but not removed"],
       ["setOptions", "(options: Object) => void", "Update the editor's options. The options object passed is the same as the &lt;Editor /&gt; props."],
       ["selectNode", "(nodeId: NodeId | null) => void", "Select the specified node. You can clear the selection by passing `null`"],
+      ["hoverNode", "(nodeId: NodeId | null) => void", "Set hovered event the specified node. You can clear the selection by passing `null`"],
       ["history", [
         ["undo", "() => void", "Undo the last recorded action"],
         ["redo", "() => void", "Redo the last undone action"],

@@ -453,6 +453,22 @@ const Methods = (
 
       this.setNodeEvent('hovered', null);
     },
+
+    hoverNode(nodeIdSelector?: NodeSelector<NodeSelectorType.Id>) {
+      if (nodeIdSelector) {
+        const targets = getNodesFromSelector(state.nodes, nodeIdSelector, {
+          idOnly: true,
+          existOnly: true,
+        });
+
+        this.setNodeEvent(
+          'hovered',
+          targets.map(({ node }) => node.id)
+        );
+      } else {
+        this.setNodeEvent('hovered', null);
+      }
+    },
   };
 };
 

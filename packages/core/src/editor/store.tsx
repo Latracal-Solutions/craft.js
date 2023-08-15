@@ -43,6 +43,7 @@ export const ActionMethodsWithConfig = {
     'setDOM',
     'setNodeEvent',
     'selectNode',
+    'hoverNode',
     'clearEvents',
     'setOptions',
     'setIndicator',

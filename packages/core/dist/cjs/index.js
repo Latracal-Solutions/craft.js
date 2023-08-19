@@ -1656,6 +1656,7 @@ function createNode(newNode, normalize) {
       selected: false,
       dragged: false,
       hovered: false,
+      draggedOver: false,
     },
     rules: {
       canDrag: function canDrag() {

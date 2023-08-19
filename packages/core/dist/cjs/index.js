@@ -1061,6 +1061,7 @@ var Methods = function Methods(state, query) {
       this.setNodeEvent('selected', null);
       this.setNodeEvent('hovered', null);
       this.setNodeEvent('dragged', null);
+      this.setNodeEvent('draggedOver', null);
       this.setIndicator(null);
     },
     /**
@@ -2070,6 +2071,38 @@ function QueryMethods(state) {
       }
       return node;
     },
+    /**
+     * Helper to get ids of the nodes the user is currently dragging a node over
+     *
+     * @example
+     * ```
+     * <div data-nodeid="ROOT">
+     *   <div data-nodeid="node-1-1">
+     *      <div data-nodeid="node-2-1">A</div>
+     *      <div data-nodeid="node-2-2">B</div>
+     *   </div>
+     *   <div data-nodeid="node-1-2">C</div>
+     * </div>
+     * ```
+     *
+     * Let's use the code above as an example. Imagine a user would drag a node over the div with content A. The list that getDraggedOverNodes will return
+     * would be `['node-2-1', 'node-1-1', 'ROOT']`
+     *
+     * @returns The list of the node ids the user is currently dragging a node over. Ordered "descending" by the depth in the node tree.
+     * The lowest node the "ROOT" will be last element and deepest element (the one we are dragging over) will be first. In between we have the ancestors of the first element
+     * ordered by their depth accordingly.
+     */
+    getDraggedOverNodes() {
+      const draggedOverNodeId = Array.from(state.events.draggedOver)[0];
+      if (draggedOverNodeId) {
+        return new Set([
+          draggedOverNodeId,
+          ..._().node(draggedOverNodeId).ancestors(),
+        ]);
+      } else {
+        return new Set();
+      }
+    },
     getState() {
       return state;
     },
@@ -2598,6 +2631,7 @@ var DefaultEventHandlers = /*#__PURE__*/ (function (_CoreEventHandlers) {
               el,
               'dragenter',
               function (e) {
+                store.actions.setNodeEvent('draggedOver', targetId);
                 e.craft.stopPropagation();
                 e.preventDefault();
               }
@@ -2767,6 +2801,7 @@ var DefaultEventHandlers = /*#__PURE__*/ (function (_CoreEventHandlers) {
         this.dragTarget = null;
         store.actions.setIndicator(null);
         store.actions.setNodeEvent('dragged', null);
+        store.actions.setNodeEvent('draggedOver', null);
         this.positioner.cleanup();
         this.positioner = null;
       },
@@ -2891,6 +2926,7 @@ const editorInitialState = {
     dragged: new Set(),
     selected: new Set(),
     hovered: new Set(),
+    draggedOver: new Set(),
   },
   indicator: null,
   options: {

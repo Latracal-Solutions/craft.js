@@ -218,7 +218,7 @@ const Methods = (
      * Delete a Node
      * @param id
      */
-    delete(selector: NodeSelector<NodeSelectorType.Id>) {
+    delete(selector: NodeSelector<NodeSelectorType.Id>, forceTopLevel = false) {
       const targets = getNodesFromSelector(state.nodes, selector, {
         existOnly: true,
         idOnly: true,
@@ -226,7 +226,7 @@ const Methods = (
 
       targets.forEach(({ node }) => {
         invariant(
-          !query.node(node.id).isTopLevelNode(),
+          forceTopLevel ? true : !query.node(node.id).isTopLevelNode(),
           ERROR_DELETE_TOP_LEVEL_NODE
         );
         deleteNode(node.id);

@@ -37,6 +37,7 @@ export function createNode(
       linkedNodes: {},
       ...newNode.data,
     },
+    info: {},
     related: {},
     events: {
       selected: false,
@@ -136,6 +137,10 @@ export function createNode(
             React.createElement(userComponentConfig.related[comp], props)
           );
       });
+    }
+
+    if (userComponentConfig.info) {
+      node.info = userComponentConfig.info;
     }
   }
 

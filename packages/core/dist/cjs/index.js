@@ -1,7 +1,7 @@
 'use strict';
 'undefined' != typeof window &&
   (window.__CRAFTJS__ || (window.__CRAFTJS__ = {}),
-  (window.__CRAFTJS__['@craftjs/core'] = '0.2.12')),
+  (window.__CRAFTJS__['@craftjs/core'] = '0.2.13')),
   Object.defineProperty(exports, '__esModule', { value: !0 });
 var e = require('@craftjs/utils'),
   t = require('react'),

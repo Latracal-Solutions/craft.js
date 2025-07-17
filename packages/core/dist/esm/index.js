@@ -1,6 +1,6 @@
 'undefined' != typeof window &&
   (window.__CRAFTJS__ || (window.__CRAFTJS__ = {}),
-  (window.__CRAFTJS__['@craftjs/core'] = '0.2.12'));
+  (window.__CRAFTJS__['@craftjs/core'] = '0.2.13'));
 import {
   ERROR_USE_EDITOR_OUTSIDE_OF_EDITOR_CONTEXT as e,
   useCollector as t,

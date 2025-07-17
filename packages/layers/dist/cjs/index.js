@@ -1,5 +1,8 @@
 'use strict';
-Object.defineProperty(exports, '__esModule', { value: !0 });
+'undefined' != typeof window &&
+  (window.__CRAFTJS__ || (window.__CRAFTJS__ = {}),
+  (window.__CRAFTJS__['@craftjs/layers'] = '0.2.5')),
+  Object.defineProperty(exports, '__esModule', { value: !0 });
 var e = require('@craftjs/utils'),
   t = require('react'),
   n = require('@craftjs/core'),
@@ -345,11 +348,23 @@ var j = (function (e) {
                   var a = d.events,
                     o = a.indicator,
                     i = a.currentCanvasHovered;
-                  if (i && o && i.data.nodes) {
+                  if (i && o) {
                     var s = e.getLayer(i.id).headingDom.getBoundingClientRect();
                     if (r.clientY > s.top + 10 && r.clientY < s.bottom - 10) {
                       var l = i.data.nodes[i.data.nodes.length - 1];
-                      if (!l) return;
+                      if (!l)
+                        return void (d.events.indicator = x(
+                          x({}, o),
+                          {},
+                          {
+                            placement: x(
+                              x({}, o.placement),
+                              {},
+                              { index: 0, where: 'before', parent: i }
+                            ),
+                            onCanvas: !0,
+                          }
+                        ));
                       (d.events.indicator = x(
                         x({}, o),
                         {},
@@ -524,7 +539,7 @@ const L = ({ children: r }) => {
       e
     );
   },
-  D = () => {
+  _ = () => {
     const { id: e } = v(),
       { displayName: r, actions: a } = n.useEditor((t) => ({
         displayName:
@@ -564,7 +579,7 @@ const L = ({ children: r }) => {
       })
     );
   };
-var k;
+var D;
 function R() {
   return (
     (R = Object.assign
@@ -580,22 +595,22 @@ function R() {
     R.apply(this, arguments)
   );
 }
-var H,
-  M,
-  N = function (e) {
+var k,
+  H,
+  M = function (e) {
     return s.createElement(
       'svg',
       R({ xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 10 6' }, e),
-      k ||
-        (k = s.createElement('path', {
+      D ||
+        (D = s.createElement('path', {
           d:
             'M9.99 1.01A1 1 0 0 0 8.283.303L5 3.586 1.717.303A1 1 0 1 0 .303 1.717l3.99 3.98a1 1 0 0 0 1.414 0l3.99-3.98a.997.997 0 0 0 .293-.707Z',
         }))
     );
   };
-function _() {
+function N() {
   return (
-    (_ = Object.assign
+    (N = Object.assign
       ? Object.assign.bind()
       : function (e) {
           for (var t = 1; t < arguments.length; t++) {
@@ -605,7 +620,7 @@ function _() {
           }
           return e;
         }),
-    _.apply(this, arguments)
+    N.apply(this, arguments)
   );
 }
 var S,
@@ -613,7 +628,7 @@ var S,
   B = function (e) {
     return s.createElement(
       'svg',
-      _(
+      N(
         {
           xmlns: 'http://www.w3.org/2000/svg',
           viewBox: '0 0 24 24',
@@ -622,9 +637,9 @@ var S,
         },
         e
       ),
-      H || (H = s.createElement('path', { fill: 'none', d: 'M0 0h24v24H0z' })),
-      M ||
-        (M = s.createElement('path', {
+      k || (k = s.createElement('path', { fill: 'none', d: 'M0 0h24v24H0z' })),
+      H ||
+        (H = s.createElement('path', {
           d:
             'M1.181 12C2.121 6.88 6.608 3 12 3c5.392 0 9.878 3.88 10.819 9-.94 5.12-5.427 9-10.819 9-5.392 0-9.878-3.88-10.819-9zM12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6z',
         }))
@@ -645,7 +660,7 @@ function q() {
     q.apply(this, arguments)
   );
 }
-var z = function (e) {
+var T = function (e) {
   return s.createElement(
     'svg',
     q({ xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 18 18' }, e),
@@ -663,7 +678,7 @@ var z = function (e) {
       }))
   );
 };
-const T = l.default.div`
+const z = l.default.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -692,17 +707,19 @@ const T = l.default.div`
     }
   }
 `,
-  Y = l.default.a`
+  A = l.default.a`
   width: 8px;
   height: 8px;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center;
   transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
   transform: rotate(${(e) => (e.expanded ? 180 : 0)}deg);
   opacity: 0.7;
   cursor: pointer;
-  transform-origin: 60% center;
 `,
-  A = l.default.a`
+  Y = l.default.a`
   width: 14px;
   height: 14px;
   margin-right: 10px;
@@ -739,7 +756,7 @@ const T = l.default.div`
     height: 12px;
   }
 `,
-  V = () => {
+  F = () => {
     const {
         id: e,
         depth: t,
@@ -759,10 +776,10 @@ const T = l.default.div`
         }
       );
     return d.default.createElement(
-      T,
+      z,
       { selected: u, ref: o, depth: t },
       d.default.createElement(
-        A,
+        Y,
         { selected: u, isHidden: l, onClick: () => c.setHidden(e, !l) },
         d.default.createElement(B, null)
       ),
@@ -773,21 +790,21 @@ const T = l.default.div`
           'div',
           { ref: i },
           f
-            ? d.default.createElement(I, null, d.default.createElement(z, null))
+            ? d.default.createElement(I, null, d.default.createElement(T, null))
             : null,
           d.default.createElement(
             'div',
             { className: 'layer-name s' },
-            d.default.createElement(D, null)
+            d.default.createElement(_, null)
           ),
           d.default.createElement(
             'div',
             null,
             a && a.length
               ? d.default.createElement(
-                  Y,
+                  A,
                   { expanded: r, onMouseDown: () => s() },
-                  d.default.createElement(N, null)
+                  d.default.createElement(M, null)
                 )
               : null
           )
@@ -795,12 +812,12 @@ const T = l.default.div`
       )
     );
   },
-  Z = l.default.div`
+  J = l.default.div`
   background: ${(e) => (e.hovered ? '#f1f1f1' : 'transparent')};
   display: block;
   padding-bottom: ${(e) => (e.hasCanvases && e.expanded ? 5 : 0)}px;
 `,
-  W = l.default.div`
+  V = l.default.div`
   margin: 0 0 0 ${(e) => (e.hasCanvases ? 35 : 0)}px;
   background: ${(e) =>
     e.hasCanvases ? 'rgba(255, 255, 255, 0.02)' : 'transparent'};
@@ -811,7 +828,7 @@ const T = l.default.div`
       ? '\n  \n  box-shadow: 0px 0px 44px -1px #00000014;\n  border-radius: 10px;\n  margin-right: 5px;\n  margin-bottom:5px;\n  margin-top:5px; \n  > * { overflow:hidden; }\n    &:before { \n      position:absolute;\n      left:-19px;\n      width: 2px;\n      height:100%;\n      content: " ";\n      background:#00000012;\n    }\n  '
       : ''}
 `,
-  U = ({ children: e }) => {
+  Z = ({ children: e }) => {
     const {
         id: t,
         expanded: r,
@@ -822,23 +839,23 @@ const T = l.default.div`
         hasChildCanvases: n.node(t).isParentOfTopLevelNodes(),
       }));
     return d.default.createElement(
-      Z,
+      J,
       { ref: o, expanded: r, hasCanvases: i, hovered: a },
-      d.default.createElement(V, null),
+      d.default.createElement(F, null),
       e
         ? d.default.createElement(
-            W,
+            V,
             { hasCanvases: i, className: 'craft-layer-children' },
             e
           )
         : null
     );
   },
-  X = ({ children: t, options: n }) => {
+  W = ({ children: t, options: n }) => {
     const r = e.useMethods(y, {
       layers: {},
       events: { selected: null, dragged: null, hovered: null },
-      options: { renderLayer: U, ...n },
+      options: { renderLayer: Z, ...n },
     });
     return d.default.createElement(
       f.Provider,
@@ -846,13 +863,14 @@ const T = l.default.div`
       d.default.createElement(P, null, t)
     );
   };
-(exports.DefaultLayer = U),
-  (exports.DefaultLayerHeader = V),
-  (exports.EditableLayerName = D),
+(exports.DefaultLayer = Z),
+  (exports.DefaultLayerHeader = F),
+  (exports.EditableLayerName = _),
   (exports.Layers = ({ ...t }) =>
     d.default.createElement(
-      X,
+      W,
       { options: t },
       d.default.createElement(m, { id: e.ROOT_NODE, depth: 0 })
     )),
   (exports.useLayer = v);
+//# sourceMappingURL=index.js.map

@@ -1,3 +1,6 @@
+'undefined' != typeof window &&
+  (window.__CRAFTJS__ || (window.__CRAFTJS__ = {}),
+  (window.__CRAFTJS__['@craftjs/layers'] = '0.2.5'));
 import {
   useCollector as e,
   wrapConnectorHooks as t,
@@ -24,15 +27,15 @@ import {
 } from '@craftjs/core';
 import b from 'styled-components';
 import x from 'react-contenteditable';
-const E = i.createContext({}),
-  w = d({});
+const w = i.createContext({}),
+  E = d({});
 function O(t) {
-  const { store: n } = c(w),
+  const { store: n } = c(E),
     r = e(n, t);
   return s(() => ({ store: n, ...r }), [n, r]);
 }
 function C(e) {
-  const { id: n, depth: r, connectors: a } = c(E),
+  const { id: n, depth: r, connectors: a } = c(w),
     { actions: o, ...i } = O((t) => n && t.layers[n] && e && e(t.layers[n])),
     { children: d } = g((e, t) => ({
       children: e.nodes[n] && t.node(n).descendants(),
@@ -108,7 +111,7 @@ const j = () => {
   L = d(null),
   P = ({ id: e, depth: n }) => {
     const r = c(L),
-      { store: a } = c(w);
+      { store: a } = c(E);
     u(a).current = a;
     const o = s(() => r.createConnectorsUsage(), [r]),
       d = s(() => t(o.connectors), [o]);
@@ -124,13 +127,13 @@ const j = () => {
     const { exists: l } = g((t) => ({ exists: !!t.nodes[e] }));
     return l
       ? i.createElement(
-          E.Provider,
+          w.Provider,
           { value: { id: e, depth: n, connectors: d } },
           i.createElement(j, null)
         )
       : null;
   },
-  D = (e) => ({
+  _ = (e) => ({
     setLayerEvent: (t, n) => {
       if (null !== n && !e.layers[n]) return;
       const r = e.events[t];
@@ -166,7 +169,7 @@ const j = () => {
       e.events.indicator = t;
     },
   });
-function k(e, t) {
+function D(e, t) {
   var n = Object.keys(e);
   if (Object.getOwnPropertySymbols) {
     var r = Object.getOwnPropertySymbols(e);
@@ -178,16 +181,16 @@ function k(e, t) {
   }
   return n;
 }
-function N(e) {
+function k(e) {
   for (var t = 1; t < arguments.length; t++) {
     var n = null != arguments[t] ? arguments[t] : {};
     t % 2
-      ? k(Object(n), !0).forEach(function (t) {
+      ? D(Object(n), !0).forEach(function (t) {
           R(e, t, n[t]);
         })
       : Object.getOwnPropertyDescriptors
       ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(n))
-      : k(Object(n)).forEach(function (t) {
+      : D(Object(n)).forEach(function (t) {
           Object.defineProperty(e, t, Object.getOwnPropertyDescriptor(n, t));
         });
   }
@@ -195,7 +198,7 @@ function N(e) {
 }
 function R(e, t, n) {
   return (
-    (t = _(t)) in e
+    (t = H(t)) in e
       ? Object.defineProperty(e, t, {
           value: n,
           enumerable: !0,
@@ -206,27 +209,27 @@ function R(e, t, n) {
     e
   );
 }
-function H(e) {
+function N(e) {
   return (
-    (H = Object.setPrototypeOf
+    (N = Object.setPrototypeOf
       ? Object.getPrototypeOf.bind()
       : function (e) {
           return e.__proto__ || Object.getPrototypeOf(e);
         }),
-    H(e)
+    N(e)
   );
 }
-function $(e, t) {
+function S(e, t) {
   return (
-    ($ = Object.setPrototypeOf
+    (S = Object.setPrototypeOf
       ? Object.setPrototypeOf.bind()
       : function (e, t) {
           return (e.__proto__ = t), e;
         }),
-    $(e, t)
+    S(e, t)
   );
 }
-function _(e) {
+function H(e) {
   var t = (function (e, t) {
     if ('object' != typeof e || null === e) return e;
     var n = e[Symbol.toPrimitive];
@@ -239,7 +242,7 @@ function _(e) {
   })(e);
   return 'symbol' == typeof t ? t : String(t);
 }
-var B = (function (e) {
+var $ = (function (e) {
   !(function (e, t) {
     if ('function' != typeof t && null !== t)
       throw new TypeError('Super expression must either be null or a function');
@@ -247,7 +250,7 @@ var B = (function (e) {
       constructor: { value: e, writable: !0, configurable: !0 },
     })),
       Object.defineProperty(e, 'prototype', { writable: !1 }),
-      t && $(e, t);
+      t && S(e, t);
   })(i, m);
   var t,
     n,
@@ -272,9 +275,9 @@ var B = (function (e) {
       })()),
       function () {
         var e,
-          t = H(r);
+          t = N(r);
         if (a) {
-          var n = H(this).constructor;
+          var n = N(this).constructor;
           e = Reflect.construct(t, arguments, n);
         } else e = t.apply(this, arguments);
         return (function (e, t) {
@@ -331,13 +334,25 @@ var B = (function (e) {
                   var a = i.events,
                     o = a.indicator,
                     d = a.currentCanvasHovered;
-                  if (d && o && d.data.nodes) {
+                  if (d && o) {
                     var c = e.getLayer(d.id).headingDom.getBoundingClientRect();
                     if (r.clientY > c.top + 10 && r.clientY < c.bottom - 10) {
                       var s = d.data.nodes[d.data.nodes.length - 1];
-                      if (!s) return;
-                      (i.events.indicator = N(
-                        N({}, o),
+                      if (!s)
+                        return void (i.events.indicator = k(
+                          k({}, o),
+                          {},
+                          {
+                            placement: k(
+                              k({}, o.placement),
+                              {},
+                              { index: 0, where: 'before', parent: d }
+                            ),
+                            onCanvas: !0,
+                          }
+                        ));
+                      (i.events.indicator = k(
+                        k({}, o),
                         {},
                         {
                           placement: {
@@ -390,7 +405,7 @@ var B = (function (e) {
                               : r.clientY < s.top + 10 &&
                                 (d.placement.where = 'before')));
                       }
-                      (i.events.indicator = N(N({}, d), {}, { onCanvas: !1 })),
+                      (i.events.indicator = k(k({}, d), {}, { onCanvas: !1 })),
                         n.actions.setIndicator(i.events.indicator);
                     }
                   }
@@ -436,16 +451,16 @@ var B = (function (e) {
           (r.enumerable = r.enumerable || !1),
             (r.configurable = !0),
             'value' in r && (r.writable = !0),
-            Object.defineProperty(e, _(r.key), r);
+            Object.defineProperty(e, H(r.key), r);
         }
       })(t.prototype, n),
     Object.defineProperty(t, 'prototype', { writable: !1 }),
     i
   );
 })();
-R(B, 'draggedElement', void 0),
-  R(B, 'events', { indicator: null, currentCanvasHovered: null });
-const S = ({ children: e }) => {
+R($, 'draggedElement', void 0),
+  R($, 'events', { indicator: null, currentCanvasHovered: null });
+const B = ({ children: e }) => {
     const { layers: t, events: r } = O((e) => e),
       { query: a } = g((e) => ({ enabled: e.options.enabled })),
       { indicator: o } = a.getOptions(),
@@ -500,15 +515,15 @@ const S = ({ children: e }) => {
   M = ({ children: e }) => {
     const { store: t } = O(),
       n = y(),
-      r = s(() => n.derive(B, { layerStore: t }), [n, t]);
+      r = s(() => n.derive($, { layerStore: t }), [n, t]);
     return i.createElement(
       L.Provider,
       { value: r },
-      i.createElement(S, null),
+      i.createElement(B, null),
       e
     );
   },
-  z = () => {
+  T = () => {
     const { id: e } = C(),
       { displayName: t, actions: n } = g((t) => ({
         displayName:
@@ -548,10 +563,10 @@ const S = ({ children: e }) => {
       })
     );
   };
-var T;
-function Y() {
+var z;
+function A() {
   return (
-    (Y = Object.assign
+    (A = Object.assign
       ? Object.assign.bind()
       : function (e) {
           for (var t = 1; t < arguments.length; t++) {
@@ -561,25 +576,25 @@ function Y() {
           }
           return e;
         }),
-    Y.apply(this, arguments)
+    A.apply(this, arguments)
   );
 }
-var q,
-  A,
+var Y,
+  q,
   I = function (e) {
     return o.createElement(
       'svg',
-      Y({ xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 10 6' }, e),
-      T ||
-        (T = o.createElement('path', {
+      A({ xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 10 6' }, e),
+      z ||
+        (z = o.createElement('path', {
           d:
             'M9.99 1.01A1 1 0 0 0 8.283.303L5 3.586 1.717.303A1 1 0 1 0 .303 1.717l3.99 3.98a1 1 0 0 0 1.414 0l3.99-3.98a.997.997 0 0 0 .293-.707Z',
         }))
     );
   };
-function V() {
+function F() {
   return (
-    (V = Object.assign
+    (F = Object.assign
       ? Object.assign.bind()
       : function (e) {
           for (var t = 1; t < arguments.length; t++) {
@@ -589,15 +604,15 @@ function V() {
           }
           return e;
         }),
-    V.apply(this, arguments)
+    F.apply(this, arguments)
   );
 }
-var Z,
-  W,
-  U = function (e) {
+var J,
+  V,
+  Z = function (e) {
     return o.createElement(
       'svg',
-      V(
+      F(
         {
           xmlns: 'http://www.w3.org/2000/svg',
           viewBox: '0 0 24 24',
@@ -606,17 +621,17 @@ var Z,
         },
         e
       ),
-      q || (q = o.createElement('path', { fill: 'none', d: 'M0 0h24v24H0z' })),
-      A ||
-        (A = o.createElement('path', {
+      Y || (Y = o.createElement('path', { fill: 'none', d: 'M0 0h24v24H0z' })),
+      q ||
+        (q = o.createElement('path', {
           d:
             'M1.181 12C2.121 6.88 6.608 3 12 3c5.392 0 9.878 3.88 10.819 9-.94 5.12-5.427 9-10.819 9-5.392 0-9.878-3.88-10.819-9zM12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6z',
         }))
     );
   };
-function X() {
+function W() {
   return (
-    (X = Object.assign
+    (W = Object.assign
       ? Object.assign.bind()
       : function (e) {
           for (var t = 1; t < arguments.length; t++) {
@@ -626,28 +641,28 @@ function X() {
           }
           return e;
         }),
-    X.apply(this, arguments)
+    W.apply(this, arguments)
   );
 }
-var F = function (e) {
+var U = function (e) {
   return o.createElement(
     'svg',
-    X({ xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 18 18' }, e),
-    Z ||
-      (Z = o.createElement('path', {
+    W({ xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 18 18' }, e),
+    J ||
+      (J = o.createElement('path', {
         className: 'linked_svg__a',
         d:
           'M16.5 9h-1a.5.5 0 0 0-.5.5V15H3V3h5.5a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0-.5.5v15a.5.5 0 0 0 .5.5h15a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.5-.5Z',
       })),
-    W ||
-      (W = o.createElement('path', {
+    V ||
+      (V = o.createElement('path', {
         className: 'linked_svg__a',
         d:
           'M16.75 1h-5.373a.4.4 0 0 0-.377.4.392.392 0 0 0 .117.28l1.893 1.895-3.52 3.521a.5.5 0 0 0 0 .707l.706.708a.5.5 0 0 0 .708 0l3.521-3.521 1.893 1.892A.39.39 0 0 0 16.6 7a.4.4 0 0 0 .4-.377V1.25a.25.25 0 0 0-.25-.25Z',
       }))
   );
 };
-const G = b.div`
+const X = b.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -676,15 +691,17 @@ const G = b.div`
     }
   }
 `,
-  J = b.a`
+  G = b.a`
   width: 8px;
   height: 8px;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center;
   transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
   transform: rotate(${(e) => (e.expanded ? 180 : 0)}deg);
   opacity: 0.7;
   cursor: pointer;
-  transform-origin: 60% center;
 `,
   K = b.a`
   width: 14px;
@@ -741,12 +758,12 @@ const G = b.div`
         };
       });
     return i.createElement(
-      G,
+      X,
       { selected: l, ref: a, depth: t },
       i.createElement(
         K,
         { selected: l, isHidden: c, onClick: () => s.setHidden(e, !c) },
-        i.createElement(U, null)
+        i.createElement(Z, null)
       ),
       i.createElement(
         'div',
@@ -754,18 +771,18 @@ const G = b.div`
         i.createElement(
           'div',
           { ref: o },
-          p ? i.createElement(Q, null, i.createElement(F, null)) : null,
+          p ? i.createElement(Q, null, i.createElement(U, null)) : null,
           i.createElement(
             'div',
             { className: 'layer-name s' },
-            i.createElement(z, null)
+            i.createElement(T, null)
           ),
           i.createElement(
             'div',
             null,
             r && r.length
               ? i.createElement(
-                  J,
+                  G,
                   { expanded: n, onMouseDown: () => d() },
                   i.createElement(I, null)
                 )
@@ -815,13 +832,13 @@ const G = b.div`
     );
   },
   ae = ({ children: e, options: t }) => {
-    const n = r(D, {
+    const n = r(_, {
       layers: {},
       events: { selected: null, dragged: null, hovered: null },
       options: { renderLayer: re, ...t },
     });
     return i.createElement(
-      w.Provider,
+      E.Provider,
       { value: { store: n } },
       i.createElement(M, null, e)
     );
@@ -835,7 +852,8 @@ const G = b.div`
 export {
   re as DefaultLayer,
   ee as DefaultLayerHeader,
-  z as EditableLayerName,
+  T as EditableLayerName,
   oe as Layers,
   C as useLayer,
 };
+//# sourceMappingURL=index.js.map

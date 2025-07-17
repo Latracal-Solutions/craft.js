@@ -1,20 +1,24 @@
 'use strict';
-Object.defineProperty(exports, '__esModule', { value: !0 });
+'undefined' != typeof window &&
+  (window.__CRAFTJS__ || (window.__CRAFTJS__ = {}),
+  (window.__CRAFTJS__['@craftjs/core'] = '0.2.12')),
+  Object.defineProperty(exports, '__esModule', { value: !0 });
 var e = require('@craftjs/utils'),
   t = require('react'),
   n = require('tiny-invariant'),
-  r = require('lodash'),
+  r = require('lodash/isFunction'),
   o = require('lodash/cloneDeep');
 function a(e) {
   return e && 'object' == typeof e && 'default' in e ? e : { default: e };
 }
 var i = a(t),
   d = a(n),
-  s = a(o);
-const c = i.default.createContext(null),
-  u = ({ id: e, related: t = !1, children: n }) =>
-    i.default.createElement(c.Provider, { value: { id: e, related: t } }, n);
-function l(e, t) {
+  s = a(r),
+  c = a(o);
+const u = i.default.createContext(null),
+  l = ({ id: e, related: t = !1, children: n }) =>
+    i.default.createElement(u.Provider, { value: { id: e, related: t } }, n);
+function f(e, t) {
   var n = Object.keys(e);
   if (Object.getOwnPropertySymbols) {
     var r = Object.getOwnPropertySymbols(e);
@@ -26,24 +30,24 @@ function l(e, t) {
   }
   return n;
 }
-function f(e) {
+function p(e) {
   for (var t = 1; t < arguments.length; t++) {
     var n = null != arguments[t] ? arguments[t] : {};
     t % 2
-      ? l(Object(n), !0).forEach(function (t) {
-          g(e, t, n[t]);
+      ? f(Object(n), !0).forEach(function (t) {
+          E(e, t, n[t]);
         })
       : Object.getOwnPropertyDescriptors
       ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(n))
-      : l(Object(n)).forEach(function (t) {
+      : f(Object(n)).forEach(function (t) {
           Object.defineProperty(e, t, Object.getOwnPropertyDescriptor(n, t));
         });
   }
   return e;
 }
-function p(e) {
+function v(e) {
   return (
-    (p =
+    (v =
       'function' == typeof Symbol && 'symbol' == typeof Symbol.iterator
         ? function (e) {
             return typeof e;
@@ -56,33 +60,33 @@ function p(e) {
               ? 'symbol'
               : typeof e;
           }),
-    p(e)
+    v(e)
   );
 }
-function v(e, t) {
+function h(e, t) {
   if (!(e instanceof t))
     throw new TypeError('Cannot call a class as a function');
 }
-function h(e, t) {
+function y(e, t) {
   for (var n = 0; n < t.length; n++) {
     var r = t[n];
     (r.enumerable = r.enumerable || !1),
       (r.configurable = !0),
       'value' in r && (r.writable = !0),
-      Object.defineProperty(e, C(r.key), r);
+      Object.defineProperty(e, S(r.key), r);
   }
 }
-function y(e, t, n) {
+function g(e, t, n) {
   return (
-    t && h(e.prototype, t),
-    n && h(e, n),
+    t && y(e.prototype, t),
+    n && y(e, n),
     Object.defineProperty(e, 'prototype', { writable: !1 }),
     e
   );
 }
-function g(e, t, n) {
+function E(e, t, n) {
   return (
-    (t = C(t)) in e
+    (t = S(t)) in e
       ? Object.defineProperty(e, t, {
           value: n,
           enumerable: !0,
@@ -93,36 +97,36 @@ function g(e, t, n) {
     e
   );
 }
-function E(e, t) {
+function m(e, t) {
   if ('function' != typeof t && null !== t)
     throw new TypeError('Super expression must either be null or a function');
   (e.prototype = Object.create(t && t.prototype, {
     constructor: { value: e, writable: !0, configurable: !0 },
   })),
     Object.defineProperty(e, 'prototype', { writable: !1 }),
-    t && O(e, t);
+    t && N(e, t);
 }
-function m(e) {
+function O(e) {
   return (
-    (m = Object.setPrototypeOf
+    (O = Object.setPrototypeOf
       ? Object.getPrototypeOf.bind()
       : function (e) {
           return e.__proto__ || Object.getPrototypeOf(e);
         }),
-    m(e)
+    O(e)
   );
 }
-function O(e, t) {
+function N(e, t) {
   return (
-    (O = Object.setPrototypeOf
+    (N = Object.setPrototypeOf
       ? Object.setPrototypeOf.bind()
       : function (e, t) {
           return (e.__proto__ = t), e;
         }),
-    O(e, t)
+    N(e, t)
   );
 }
-function N(e, t) {
+function b(e, t) {
   if (null == e) return {};
   var n,
     r,
@@ -144,14 +148,14 @@ function N(e, t) {
   }
   return o;
 }
-function b(e) {
+function R(e) {
   if (void 0 === e)
     throw new ReferenceError(
       "this hasn't been initialised - super() hasn't been called"
     );
   return e;
 }
-function R(e) {
+function T(e) {
   var t = (function () {
     if ('undefined' == typeof Reflect || !Reflect.construct) return !1;
     if (Reflect.construct.sham) return !1;
@@ -169,9 +173,9 @@ function R(e) {
   })();
   return function () {
     var n,
-      r = m(e);
+      r = O(e);
     if (t) {
-      var o = m(this).constructor;
+      var o = O(this).constructor;
       n = Reflect.construct(r, arguments, o);
     } else n = r.apply(this, arguments);
     return (function (e, t) {
@@ -180,14 +184,64 @@ function R(e) {
         throw new TypeError(
           'Derived constructors may only return object or undefined'
         );
-      return b(e);
+      return R(e);
     })(this, n);
   };
 }
-function T(e) {
+function _(e, t) {
   return (
     (function (e) {
-      if (Array.isArray(e)) return _(e);
+      if (Array.isArray(e)) return e;
+    })(e) ||
+    (function (e, t) {
+      var n =
+        null == e
+          ? null
+          : ('undefined' != typeof Symbol && e[Symbol.iterator]) ||
+            e['@@iterator'];
+      if (null != n) {
+        var r,
+          o,
+          a,
+          i,
+          d = [],
+          s = !0,
+          c = !1;
+        try {
+          if (((a = (n = n.call(e)).next), 0 === t)) {
+            if (Object(n) !== n) return;
+            s = !1;
+          } else
+            for (
+              ;
+              !(s = (r = a.call(n)).done) && (d.push(r.value), d.length !== t);
+              s = !0
+            );
+        } catch (e) {
+          (c = !0), (o = e);
+        } finally {
+          try {
+            if (!s && null != n.return && ((i = n.return()), Object(i) !== i))
+              return;
+          } finally {
+            if (c) throw o;
+          }
+        }
+        return d;
+      }
+    })(e, t) ||
+    C(e, t) ||
+    (function () {
+      throw new TypeError(
+        'Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
+      );
+    })()
+  );
+}
+function D(e) {
+  return (
+    (function (e) {
+      if (Array.isArray(e)) return I(e);
     })(e) ||
     (function (e) {
       if (
@@ -196,7 +250,7 @@ function T(e) {
       )
         return Array.from(e);
     })(e) ||
-    D(e) ||
+    C(e) ||
     (function () {
       throw new TypeError(
         'Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
@@ -204,9 +258,9 @@ function T(e) {
     })()
   );
 }
-function D(e, t) {
+function C(e, t) {
   if (e) {
-    if ('string' == typeof e) return _(e, t);
+    if ('string' == typeof e) return I(e, t);
     var n = Object.prototype.toString.call(e).slice(8, -1);
     return (
       'Object' === n && e.constructor && (n = e.constructor.name),
@@ -214,17 +268,17 @@ function D(e, t) {
         ? Array.from(e)
         : 'Arguments' === n ||
           /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)
-        ? _(e, t)
+        ? I(e, t)
         : void 0
     );
   }
 }
-function _(e, t) {
+function I(e, t) {
   (null == t || t > e.length) && (t = e.length);
   for (var n = 0, r = new Array(t); n < t; n++) r[n] = e[n];
   return r;
 }
-function C(e) {
+function S(e) {
   var t = (function (e, t) {
     if ('object' != typeof e || null === e) return e;
     var n = e[Symbol.toPrimitive];
@@ -237,14 +291,14 @@ function C(e) {
   })(e);
   return 'symbol' == typeof t ? t : String(t);
 }
-const I = t.createContext(null);
-var S = t.createContext(null),
-  x = function () {
-    return t.useContext(S);
+const x = t.createContext(null);
+var w = t.createContext(null),
+  k = function () {
+    return t.useContext(w);
   };
-function w(n) {
-  var r = x(),
-    o = t.useContext(I);
+function j(n) {
+  var r = k(),
+    o = t.useContext(x);
   d.default(o, e.ERROR_USE_EDITOR_OUTSIDE_OF_EDITOR_CONTEXT);
   var a = e.useCollector(o, n),
     i = t.useMemo(
@@ -270,32 +324,32 @@ function w(n) {
     },
     [i]
   );
-  return f(f({}, a), {}, { connectors: s, inContext: !!o, store: o });
+  return p(p({}, a), {}, { connectors: s, inContext: !!o, store: o });
 }
-var k = ['actions', 'query', 'connectors'];
-function j(n) {
-  var r = t.useContext(c);
+var P = ['actions', 'query', 'connectors'];
+function A(n) {
+  var r = t.useContext(u);
   d.default(r, e.ERROR_USE_NODE_OUTSIDE_OF_EDITOR_CONTEXT);
   var o = r.id,
     a = r.related,
-    i = w(function (e) {
+    i = j(function (e) {
       return o && e.nodes[o] && n && n(e.nodes[o]);
     }),
     s = i.actions,
-    u = i.connectors,
-    l = N(i, k),
-    p = t.useMemo(
+    c = i.connectors,
+    l = b(i, P),
+    f = t.useMemo(
       function () {
         return e.wrapConnectorHooks({
           connect: function (e) {
-            return u.connect(e, o);
+            return c.connect(e, o);
           },
           drag: function (e) {
-            return u.drag(e, o);
+            return c.drag(e, o);
           },
         });
       },
-      [u, o]
+      [c, o]
     ),
     v = t.useMemo(
       function () {
@@ -313,22 +367,22 @@ function j(n) {
       },
       [s, o]
     );
-  return f(
-    f({}, l),
+  return p(
+    p({}, l),
     {},
-    { id: o, related: a, inNodeContext: !!r, actions: v, connectors: p }
+    { id: o, related: a, inNodeContext: !!r, actions: v, connectors: f }
   );
 }
-var P = ['id', 'related', 'actions', 'inNodeContext', 'connectors'];
-function A(t) {
-  var n = j(t),
+var L = ['id', 'related', 'actions', 'inNodeContext', 'connectors'];
+function M(t) {
+  var n = A(t),
     r = n.id,
     o = n.related,
     a = n.actions,
     i = n.inNodeContext,
     d = n.connectors;
-  return f(
-    f({}, N(n, P)),
+  return p(
+    p({}, b(n, L)),
     {},
     {
       actions: a,
@@ -347,14 +401,14 @@ function A(t) {
     }
   );
 }
-const L = ({ render: e }) => {
+const q = ({ render: e }) => {
     const {
       connectors: { connect: t, drag: n },
-    } = A();
+    } = M();
     return 'string' == typeof e.type ? t(n(i.default.cloneElement(e))) : e;
   },
-  M = () => {
-    const { type: e, props: n, nodes: r, hydrationTimestamp: o } = j((e) => ({
+  F = () => {
+    const { type: e, props: n, nodes: r, hydrationTimestamp: o } = A((e) => ({
       type: e.data.type,
       props: e.data.props,
       nodes: e.data.nodes,
@@ -367,79 +421,72 @@ const L = ({ render: e }) => {
         (t = i.default.createElement(
           i.default.Fragment,
           null,
-          r.map((e) => i.default.createElement(V, { id: e, key: e }))
+          r.map((e) => i.default.createElement(H, { id: e, key: e }))
         ));
       const o = i.default.createElement(e, n, t);
       return 'string' == typeof e
-        ? i.default.createElement(L, { render: o })
+        ? i.default.createElement(q, { render: o })
         : o;
     }, [e, n, o, r]);
   },
-  q = ({ render: e }) => {
-    const { hidden: t } = j((e) => ({ hidden: e.data.hidden })),
-      { onRender: n } = w((e) => ({ onRender: e.options.onRender }));
+  V = ({ render: e }) => {
+    const { hidden: t } = A((e) => ({ hidden: e.data.hidden })),
+      { onRender: n } = j((e) => ({ onRender: e.options.onRender }));
     return t
       ? null
       : i.default.createElement(n, {
-          render: e || i.default.createElement(M, null),
+          render: e || i.default.createElement(F, null),
         });
   },
-  V = ({ id: e, render: t }) =>
+  H = ({ id: e, render: t }) =>
     i.default.createElement(
-      u,
+      l,
       { id: e },
-      i.default.createElement(q, { render: t })
+      i.default.createElement(V, { render: t })
     ),
-  F = { is: 'div', canvas: !1, custom: {}, hidden: !1 },
-  H = { is: 'type', canvas: 'isCanvas' };
-function z({ id: n, children: r, ...o }) {
-  const { is: a } = { ...F, ...o },
-    { query: s, actions: c } = w(),
-    { node: u, inNodeContext: l } = j((e) => ({
-      node: { id: e.id, data: e.data },
-    })),
-    [f, p] = t.useState(null);
-  return (
-    e.useEffectOnce(() => {
+  z = { is: 'div', canvas: !1, custom: {}, hidden: !1 },
+  W = { is: 'type', canvas: 'isCanvas' };
+function B({ id: n, children: r, ...o }) {
+  const { is: a } = { ...z, ...o },
+    { query: s, actions: c } = j(),
+    { id: u, inNodeContext: l } = A(),
+    [f] = t.useState(() => {
       d.default(!!n, e.ERROR_TOP_LEVEL_ELEMENT_NO_ID);
-      const { id: t, data: f } = u;
+      const t = s.node(u).get();
       if (l) {
-        let e;
-        const d =
-          f.linkedNodes && f.linkedNodes[n] && s.node(f.linkedNodes[n]).get();
-        if (d && d.data.type === a) e = d.id;
-        else {
-          const a = i.default.createElement(z, o, r),
-            d = s.parseReactElement(a).toNodeTree();
-          (e = d.rootNodeId), c.history.ignore().addLinkedNodeFromTree(d, t, n);
-        }
-        p(e);
+        const e = t.data.linkedNodes[n]
+          ? s.node(t.data.linkedNodes[n]).get()
+          : null;
+        if (e && e.data.type === a) return e.id;
+        const d = i.default.createElement(B, o, r),
+          l = s.parseReactElement(d).toNodeTree();
+        return c.history.ignore().addLinkedNodeFromTree(l, u, n), l.rootNodeId;
       }
-    }),
-    f ? i.default.createElement(V, { id: f }) : null
-  );
+      return null;
+    });
+  return f ? i.default.createElement(H, { id: f }) : null;
 }
-const B = () =>
+const U = () =>
   e.deprecationWarning('<Canvas />', { suggest: '<Element canvas={true} />' });
 function Canvas({ ...e }) {
   return (
-    t.useEffect(() => B(), []), i.default.createElement(z, { ...e, canvas: !0 })
+    t.useEffect(() => U(), []), i.default.createElement(B, { ...e, canvas: !0 })
   );
 }
-const W = () => {
-  const { timestamp: t } = w((t) => ({
+const $ = () => {
+  const { timestamp: t } = j((t) => ({
     timestamp: t.nodes[e.ROOT_NODE] && t.nodes[e.ROOT_NODE]._hydrationTimestamp,
   }));
-  return t ? i.default.createElement(V, { id: e.ROOT_NODE, key: t }) : null;
+  return t ? i.default.createElement(H, { id: e.ROOT_NODE, key: t }) : null;
 };
-var U;
+var J;
 (exports.NodeSelectorType = void 0),
-  ((U = exports.NodeSelectorType || (exports.NodeSelectorType = {}))[
-    (U.Any = 0)
+  ((J = exports.NodeSelectorType || (exports.NodeSelectorType = {}))[
+    (J.Any = 0)
   ] = 'Any'),
-  (U[(U.Id = 1)] = 'Id'),
-  (U[(U.Obj = 2)] = 'Obj');
-const $ = (e) => {
+  (J[(J.Id = 1)] = 'Id'),
+  (J[(J.Obj = 2)] = 'Obj');
+const G = (e) => {
   const {
     addLinkedNodeFromTree: t,
     setDOM: n,
@@ -450,9 +497,9 @@ const $ = (e) => {
   } = e;
   return i;
 };
-function G(e) {
-  const { connectors: n, actions: r, query: o, store: a, ...i } = w(e),
-    d = $(r);
+function X(e) {
+  const { connectors: n, actions: r, query: o, store: a, ...i } = j(e),
+    d = G(r);
   return {
     connectors: n,
     actions: t.useMemo(
@@ -460,8 +507,8 @@ function G(e) {
         ...d,
         history: {
           ...d.history,
-          ignore: (...e) => $(d.history.ignore(...e)),
-          throttle: (...e) => $(d.history.throttle(...e)),
+          ignore: (...e) => G(d.history.ignore(...e)),
+          throttle: (...e) => G(d.history.throttle(...e)),
         },
       }),
       [d]
@@ -471,67 +518,19 @@ function G(e) {
     ...i,
   };
 }
-var X = function (e) {
+var Y = function (e) {
     return Object.fromEntries
       ? Object.fromEntries(e)
       : e.reduce(function (e, t) {
-          var n,
-            r =
-              (function (e) {
-                if (Array.isArray(e)) return e;
-              })((n = t)) ||
-              (function (e, t) {
-                var n =
-                  null == e
-                    ? null
-                    : ('undefined' != typeof Symbol && e[Symbol.iterator]) ||
-                      e['@@iterator'];
-                if (null != n) {
-                  var r,
-                    o,
-                    a,
-                    i,
-                    d = [],
-                    s = !0,
-                    c = !1;
-                  try {
-                    for (
-                      a = (n = n.call(e)).next;
-                      !(s = (r = a.call(n)).done) &&
-                      (d.push(r.value), 2 !== d.length);
-                      s = !0
-                    );
-                  } catch (e) {
-                    (c = !0), (o = e);
-                  } finally {
-                    try {
-                      if (
-                        !s &&
-                        null != n.return &&
-                        ((i = n.return()), Object(i) !== i)
-                      )
-                        return;
-                    } finally {
-                      if (c) throw o;
-                    }
-                  }
-                  return d;
-                }
-              })(n) ||
-              D(n, 2) ||
-              (function () {
-                throw new TypeError(
-                  'Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
-                );
-              })(),
-            o = r[0],
-            a = r[1];
-          return f(f({}, e), {}, g({}, o, a));
+          var n = _(t, 2),
+            r = n[0],
+            o = n[1];
+          return p(p({}, e), {}, E({}, r, o));
         }, {});
   },
-  Y = function (t, n, r) {
+  K = function (t, n, r) {
     var o = Array.isArray(n) ? n : [n],
-      a = f({ existOnly: !1, idOnly: !1 }, r || {}),
+      a = p({ existOnly: !1, idOnly: !1 }, r || {}),
       i = o
         .filter(function (e) {
           return !!e;
@@ -539,7 +538,7 @@ var X = function (e) {
         .map(function (e) {
           return 'string' == typeof e
             ? { node: t[e], exists: !!t[e] }
-            : 'object' !== p(e) || a.idOnly
+            : 'object' !== v(e) || a.idOnly
             ? { node: null, exists: !1 }
             : { node: e, exists: !!t[e.id] };
         });
@@ -555,21 +554,36 @@ var X = function (e) {
       i
     );
   },
-  J = ['history'],
-  K = function (t, n) {
-    var r = n.name || n.displayName,
-      o = (function () {
-        if (t[r]) return r;
-        for (var e = 0; e < Object.keys(t).length; e++) {
-          var o = Object.keys(t)[e];
-          if (t[o] === n) return o;
-        }
-        return 'string' == typeof n ? n : void 0;
-      })();
-    return d.default(o, e.ERROR_NOT_IN_RESOLVER.replace('%node_type%', r)), o;
+  Q = ['history'],
+  Z = null,
+  ee = function (t, n) {
+    if ('string' == typeof n) return n;
+    var r,
+      o = (function (e, t) {
+        var n = (function (e) {
+          if (Z && Z.resolver === e) return Z.reversed;
+          Z = { resolver: e, reversed: new Map() };
+          for (var t = 0, n = Object.entries(e); t < n.length; t++) {
+            var r = _(n[t], 2);
+            Z.reversed.set(r[1], r[0]);
+          }
+          return Z.reversed;
+        })(e).get(t);
+        return void 0 !== n ? n : null;
+      })(t, n);
+    return (
+      d.default(
+        o,
+        e.ERROR_NOT_IN_RESOLVER.replace(
+          '%node_type%',
+          (r = n).name || r.displayName
+        )
+      ),
+      o
+    );
   };
-const Q = (e, t) => ('string' == typeof e ? e : { resolvedName: K(t, e) }),
-  Z = (e, n) => {
+const te = (e, t) => ('string' == typeof e ? e : { resolvedName: ee(t, e) }),
+  ne = (e, n) => {
     let { type: r, isCanvas: o, props: a } = e;
     return (
       (a = Object.keys(a).reduce((e, r) => {
@@ -579,25 +593,27 @@ const Q = (e, t) => ('string' == typeof e ? e : { resolvedName: K(t, e) }),
             'function' == typeof o ||
             (e[r] =
               'children' === r && 'string' != typeof o
-                ? t.Children.map(o, (e) => ('string' == typeof e ? e : Z(e, n)))
+                ? t.Children.map(o, (e) =>
+                    'string' == typeof e ? e : ne(e, n)
+                  )
                 : 'function' == typeof o.type
-                ? Z(o, n)
+                ? ne(o, n)
                 : o),
           e
         );
       }, {})),
-      { type: Q(r, n), isCanvas: !!o, props: a }
+      { type: te(r, n), isCanvas: !!o, props: a }
     );
   },
-  ee = (e, t) => {
+  re = (e, t) => {
     const { type: n, props: r, isCanvas: o, name: a, ...i } = e;
-    return { ...Z({ type: n, isCanvas: o, props: r }, t), ...i };
+    return { ...ne({ type: n, isCanvas: o, props: r }, t), ...i };
   };
-function te(t, n) {
+function oe(t, n) {
   d.default('string' == typeof n, e.ERROR_INVALID_NODE_ID);
   var r = t.nodes[n],
     o = function (e) {
-      return te(t, e);
+      return oe(t, e);
     };
   return {
     isCanvas: function () {
@@ -691,7 +707,7 @@ function te(t, n) {
         return (
           d.default(!this.isTopLevelNode(), e.ERROR_MOVE_TOP_LEVEL_NODE),
           d.default(
-            te(t, a.data.parent).isCanvas(),
+            oe(t, a.data.parent).isCanvas(),
             e.ERROR_MOVE_NONCANVAS_CHILD
           ),
           d.default(a.rules.canDrag(a, o), e.ERROR_CANNOT_DRAG),
@@ -702,7 +718,7 @@ function te(t, n) {
       }
     },
     isDroppable: function (n, a) {
-      var i = Y(t.nodes, n),
+      var i = K(t.nodes, n),
         s = r;
       try {
         d.default(this.isCanvas(), e.ERROR_MOVE_TO_NONCANVAS_PARENT),
@@ -753,10 +769,10 @@ function te(t, n) {
       }
     },
     toSerializedNode: function () {
-      return ee(r.data, t.options.resolver);
+      return re(r.data, t.options.resolver);
     },
     toNodeTree: function (e) {
-      var t = [n].concat(T(this.descendants(!0, e))).reduce(function (e, t) {
+      var t = [n].concat(D(this.descendants(!0, e))).reduce(function (e, t) {
         return (e[t] = o(t).get()), e;
       }, {});
       return { rootNodeId: n, nodes: t };
@@ -775,7 +791,7 @@ function te(t, n) {
     },
   };
 }
-function ne(e, t, n, r) {
+function ae(e, t, n, r) {
   for (
     var o = { parent: e, index: 0, where: 'before' },
       a = 0,
@@ -810,19 +826,19 @@ function ne(e, t, n, r) {
   }
   return o;
 }
-var re = function (e) {
+var ie = function (e) {
   return 'string' == typeof e ? e : e.name;
 };
-function oe(t, n) {
+function de(t, n) {
   var r = t.data.type,
     o = {
       id: t.id || e.getRandomId(),
       _hydrationTimestamp: Date.now(),
-      data: f(
+      data: p(
         {
           type: r,
-          name: re(r),
-          displayName: re(r),
+          name: ie(r),
+          displayName: ie(r),
           props: {},
           custom: {},
           parent: null,
@@ -833,6 +849,7 @@ function oe(t, n) {
         },
         t.data
       ),
+      info: {},
       related: {},
       events: { selected: !1, dragged: !1, hovered: !1, draggedOver: !1 },
       rules: {
@@ -851,49 +868,51 @@ function oe(t, n) {
       },
       dom: null,
     };
-  if (o.data.type === z || o.data.type === Canvas) {
-    var a = f(f({}, F), o.data.props);
+  if (o.data.type === B || o.data.type === Canvas) {
+    var a = p(p({}, z), o.data.props);
     (o.data.props = Object.keys(o.data.props).reduce(function (e, t) {
       return (
-        Object.keys(F).includes(t)
-          ? (o.data[H[t] || t] = a[t])
+        Object.keys(z).includes(t)
+          ? (o.data[W[t] || t] = a[t])
           : (e[t] = o.data.props[t]),
         e
       );
     }, {})),
-      (o.data.name = re((r = o.data.type))),
-      (o.data.displayName = re(r)),
-      o.data.type === Canvas && ((o.data.isCanvas = !0), B());
+      (o.data.name = ie((r = o.data.type))),
+      (o.data.displayName = ie(r)),
+      o.data.type === Canvas && ((o.data.isCanvas = !0), U());
   }
   n && n(o);
   var d = r.craft;
-  if (
-    d &&
-    ((o.data.displayName = d.displayName || d.name || o.data.displayName),
-    (o.data.props = f(f({}, d.props || d.defaultProps || {}), o.data.props)),
-    (o.data.custom = f(f({}, d.custom || {}), o.data.custom)),
-    null != d.isCanvas && (o.data.isCanvas = d.isCanvas),
-    d.rules &&
-      Object.keys(d.rules).forEach(function (e) {
-        ['canDrag', 'canDrop', 'canMoveIn', 'canMoveOut'].includes(e) &&
-          (o.rules[e] = d.rules[e]);
-      }),
-    d.related)
-  ) {
-    var s = { id: o.id, related: !0 };
-    Object.keys(d.related).forEach(function (e) {
-      o.related[e] = function (t) {
-        return i.default.createElement(
-          u,
-          s,
-          i.default.createElement(d.related[e], t)
-        );
-      };
-    });
+  if (d) {
+    if (
+      ((o.data.displayName = d.displayName || d.name || o.data.displayName),
+      (o.data.props = p(p({}, d.props || d.defaultProps || {}), o.data.props)),
+      (o.data.custom = p(p({}, d.custom || {}), o.data.custom)),
+      null != d.isCanvas && (o.data.isCanvas = d.isCanvas),
+      d.rules &&
+        Object.keys(d.rules).forEach(function (e) {
+          ['canDrag', 'canDrop', 'canMoveIn', 'canMoveOut'].includes(e) &&
+            (o.rules[e] = d.rules[e]);
+        }),
+      d.related)
+    ) {
+      var s = { id: o.id, related: !0 };
+      Object.keys(d.related).forEach(function (e) {
+        o.related[e] = function (t) {
+          return i.default.createElement(
+            l,
+            s,
+            i.default.createElement(d.related[e], t)
+          );
+        };
+      });
+    }
+    d.info && (o.info = d.info);
   }
   return o;
 }
-const ae = (e, t, n) => {
+const se = (e, t, n) => {
     let { type: r, props: o } = e;
     const a = ((e, t) =>
       'object' == typeof e && e.resolvedName
@@ -911,18 +930,18 @@ const ae = (e, t, n) => {
           null == r
             ? null
             : 'object' == typeof r && r.resolvedName
-            ? ae(r, t)
+            ? se(r, t)
             : 'children' === n && Array.isArray(r)
-            ? r.map((e) => ('string' == typeof e ? e : ae(e, t)))
+            ? r.map((e) => ('string' == typeof e ? e : se(e, t)))
             : r),
         e
       );
     }, {})),
       n && (o.key = n);
     const d = { ...i.default.createElement(a, { ...o }) };
-    return { ...d, name: K(t, d.type) };
+    return { ...d, name: ee(t, d.type) };
   },
-  ie = (t, n) => {
+  ce = (t, n) => {
     const { type: r, props: o, ...a } = t;
     d.default(
       (void 0 !== r && 'string' == typeof r) ||
@@ -932,7 +951,7 @@ const ae = (e, t, n) => {
         t.displayName
       ).replace('%availableComponents%', Object.keys(n).join(', '))
     );
-    const { type: i, name: s, props: c } = ae(t, n),
+    const { type: i, name: s, props: c } = se(t, n),
       {
         parent: u,
         custom: l,
@@ -954,7 +973,7 @@ const ae = (e, t, n) => {
       nodes: v || [],
     };
   },
-  de = (e, t) => {
+  ue = (e, t) => {
     if (t.length < 1) return { [e.id]: e };
     const n = t.map(({ rootNodeId: e }) => e),
       r = { ...e, data: { ...e.data, nodes: n } };
@@ -970,17 +989,17 @@ const ae = (e, t, n) => {
       { [e.id]: r }
     );
   },
-  se = (e, t) => ({ rootNodeId: e.id, nodes: de(e, t) });
-function ce(n) {
+  le = (e, t) => ({ rootNodeId: e.id, nodes: ue(e, t) });
+function fe(n) {
   const r = n && n.options,
-    o = () => ce(n);
+    o = () => fe(n);
   return {
     getDropPlaceholder: (t, r, a, i = (e) => n.nodes[e.id].dom) => {
       const d = n.nodes[r],
         s = o().node(d.id).isCanvas() ? d : n.nodes[d.data.parent];
       if (!s) return;
       const c = s.data.nodes || [],
-        u = ne(
+        u = ae(
           s,
           c
             ? c.reduce((t, r) => {
@@ -998,7 +1017,7 @@ function ce(n) {
         l = c.length && n.nodes[c[u.index]],
         f = { placement: { ...u, currentNode: l }, error: null };
       return (
-        Y(n.nodes, t).forEach(({ node: e, exists: t }) => {
+        K(n.nodes, t).forEach(({ node: e, exists: t }) => {
           t &&
             o()
               .node(e.id)
@@ -1012,13 +1031,13 @@ function ce(n) {
     },
     getOptions: () => r,
     getNodes: () => n.nodes,
-    node: (e) => te(n, e),
+    node: (e) => oe(n, e),
     getSerializedNodes() {
       const e = Object.keys(n.nodes).map((e) => [
         e,
         this.node(e).toSerializedNode(),
       ]);
-      return X(e);
+      return Y(e);
     },
     getEvent: (e) =>
       (function (e, t) {
@@ -1061,12 +1080,12 @@ function ce(n) {
             return (
               'string' == typeof r &&
                 (r = i.default.createElement(t.Fragment, {}, r)),
-              oe({ data: { type: r.type, props: { ...r.props } } }, (e) => {
+              de({ data: { type: r.type, props: { ...r.props } } }, (e) => {
                 n && n(e, r);
               })
             );
           })(e, (e, t) => {
-            const o = K(n.options.resolver, e.data.type);
+            const o = ee(n.options.resolver, e.data.type);
             (e.data.displayName = e.data.displayName || o),
               (e.data.name = o),
               r && r(e, t);
@@ -1083,13 +1102,13 @@ function ce(n) {
               ),
               []
             )),
-          se(a, d)
+          le(a, d)
         );
       },
     }),
     parseSerializedNode: (t) => ({
       toNode(r) {
-        const a = ie(t, n.options.resolver);
+        const a = ce(t, n.options.resolver);
         d.default(a.type, e.ERROR_NOT_IN_RESOLVER);
         const i = 'string' == typeof r && r;
         return (
@@ -1106,10 +1125,10 @@ function ce(n) {
     }),
     parseFreshNode: (t) => ({
       toNode: (r) =>
-        oe(t, (t) => {
+        de(t, (t) => {
           t.data.parent === e.DEPRECATED_ROOT_NODE &&
             (t.data.parent = e.ROOT_NODE);
-          const o = K(n.options.resolver, t.data.type);
+          const o = ee(n.options.resolver, t.data.type);
           d.default(null !== o, e.ERROR_NOT_IN_RESOLVER),
             (t.data.displayName = t.data.displayName || o),
             (t.data.name = o),
@@ -1135,14 +1154,14 @@ function ce(n) {
     getState: () => n,
   };
 }
-var ue = (function (t) {
-    E(r, e.EventHandlers);
-    var n = R(r);
+var pe = (function (t) {
+    m(r, e.EventHandlers);
+    var n = T(r);
     function r() {
-      return v(this, r), n.apply(this, arguments);
+      return h(this, r), n.apply(this, arguments);
     }
     return (
-      y(r, [
+      g(r, [
         {
           key: 'handlers',
           value: function () {
@@ -1160,27 +1179,30 @@ var ue = (function (t) {
       r
     );
   })(),
-  le = (function (t) {
-    E(r, e.DerivedEventHandlers);
-    var n = R(r);
+  ve = (function (t) {
+    m(r, e.DerivedEventHandlers);
+    var n = T(r);
     function r() {
-      return v(this, r), n.apply(this, arguments);
+      return h(this, r), n.apply(this, arguments);
     }
-    return y(r);
+    return g(r);
   })(),
-  fe = (function () {
+  he = function (e) {
+    e.preventDefault();
+  },
+  ye = (function () {
     function t(e, n) {
-      v(this, t),
-        g(this, 'store', void 0),
-        g(this, 'dragTarget', void 0),
-        g(this, 'currentDropTargetId', void 0),
-        g(this, 'currentDropTargetCanvasAncestorId', void 0),
-        g(this, 'currentIndicator', null),
-        g(this, 'currentTargetId', void 0),
-        g(this, 'currentTargetChildDimensions', void 0),
-        g(this, 'dragError', void 0),
-        g(this, 'draggedNodes', void 0),
-        g(this, 'onScrollListener', void 0),
+      h(this, t),
+        E(this, 'store', void 0),
+        E(this, 'dragTarget', void 0),
+        E(this, 'currentDropTargetId', void 0),
+        E(this, 'currentDropTargetCanvasAncestorId', void 0),
+        E(this, 'currentIndicator', null),
+        E(this, 'currentTargetId', void 0),
+        E(this, 'currentTargetChildDimensions', void 0),
+        E(this, 'dragError', void 0),
+        E(this, 'draggedNodes', void 0),
+        E(this, 'onScrollListener', void 0),
         (this.store = e),
         (this.dragTarget = n),
         (this.currentDropTargetId = null),
@@ -1192,14 +1214,16 @@ var ue = (function (t) {
         (this.draggedNodes = this.getDraggedNodes()),
         this.validateDraggedNodes(),
         (this.onScrollListener = this.onScroll.bind(this)),
-        window.addEventListener('scroll', this.onScrollListener, !0);
+        window.addEventListener('scroll', this.onScrollListener, !0),
+        window.addEventListener('dragover', he, !1);
     }
     return (
-      y(t, [
+      g(t, [
         {
           key: 'cleanup',
           value: function () {
-            window.removeEventListener('scroll', this.onScrollListener, !0);
+            window.removeEventListener('scroll', this.onScrollListener, !0),
+              window.removeEventListener('dragover', he, !1);
           },
         },
         {
@@ -1217,7 +1241,7 @@ var ue = (function (t) {
         {
           key: 'getDraggedNodes',
           value: function () {
-            return Y(
+            return K(
               this.store.query.getNodes(),
               'new' === this.dragTarget.type
                 ? this.dragTarget.tree.nodes[this.dragTarget.tree.rootNodeId]
@@ -1269,7 +1293,7 @@ var ue = (function (t) {
               ? r
               : t.data.nodes.reduce(function (t, r) {
                   var o = n.store.query.node(r).get().dom;
-                  return o && t.push(f({ id: r }, e.getDOMInfo(o))), t;
+                  return o && t.push(p({ id: r }, e.getDOMInfo(o))), t;
                 }, []);
           },
         },
@@ -1312,7 +1336,7 @@ var ue = (function (t) {
             ) {
               (this.currentTargetChildDimensions = this.getChildDimensions(o)),
                 (this.currentTargetId = o.id);
-              var a = ne(o, this.currentTargetChildDimensions, n, r);
+              var a = ae(o, this.currentTargetChildDimensions, n, r);
               if (this.isDiff(a)) {
                 var i = this.dragError;
                 i ||
@@ -1328,7 +1352,7 @@ var ue = (function (t) {
                   s = d && this.store.query.node(d).get();
                 return (
                   (this.currentIndicator = {
-                    placement: f(f({}, a), {}, { currentNode: s }),
+                    placement: p(p({}, a), {}, { currentNode: s }),
                     error: i,
                   }),
                   this.currentIndicator
@@ -1347,77 +1371,45 @@ var ue = (function (t) {
       t
     );
   })();
-g(fe, 'BORDER_OFFSET', 10);
-var pe = function (e, t) {
-    if (
-      1 === t.length ||
-      (arguments.length > 2 && void 0 !== arguments[2] && arguments[2])
-    ) {
-      var n = t[0].getBoundingClientRect(),
-        r = n.width,
-        o = n.height,
-        a = t[0].cloneNode(!0);
-      return (
-        (a.style.position = 'fixed'),
-        (a.style.left = '-100%'),
-        (a.style.top = '-100%'),
-        (a.style.width = ''.concat(r, 'px')),
-        (a.style.height = ''.concat(o, 'px')),
-        (a.style.pointerEvents = 'none'),
-        document.body.appendChild(a),
-        e.dataTransfer.setDragImage(a, 0, 0),
-        a
-      );
-    }
-    var i = document.createElement('div');
+E(ye, 'BORDER_OFFSET', 10);
+var ge = function (e, t) {
+    e.dataTransfer.effectAllowed = 'none';
+    var n = document.createElement('div');
     return (
-      (i.style.position = 'fixed'),
-      (i.style.left = '-100%'),
-      (i.style.top = '-100%'),
-      (i.style.width = '100%'),
-      (i.style.height = '100%'),
-      (i.style.pointerEvents = 'none'),
-      t.forEach(function (e) {
-        var t = e.getBoundingClientRect(),
-          n = t.width,
-          r = t.height,
-          o = t.top,
-          a = t.left,
-          d = e.cloneNode(!0);
-        (d.style.position = 'absolute'),
-          (d.style.left = ''.concat(a, 'px')),
-          (d.style.top = ''.concat(o, 'px')),
-          (d.style.width = ''.concat(n, 'px')),
-          (d.style.height = ''.concat(r, 'px')),
-          i.appendChild(d);
-      }),
-      document.body.appendChild(i),
-      e.dataTransfer.setDragImage(i, e.clientX, e.clientY),
-      i
+      (n.style.width = '1px'),
+      (n.style.height = '1px'),
+      (n.style.position = 'absolute'),
+      (n.style.left = '-100%'),
+      (n.style.top = '-100%'),
+      (n.style.opacity = '0'),
+      document.body.appendChild(n),
+      e.dataTransfer.setDragImage(n, 0, 0),
+      console.log('invisibleElement', n),
+      n
     );
   },
-  ve = (function (e) {
-    E(n, ue);
-    var t = R(n);
+  Ee = (function (e) {
+    m(n, pe);
+    var t = T(n);
     function n() {
       var e;
-      v(this, n);
+      h(this, n);
       for (var r = arguments.length, o = new Array(r), a = 0; a < r; a++)
         o[a] = arguments[a];
       return (
-        g(
-          b((e = t.call.apply(t, [this].concat(o)))),
+        E(
+          R((e = t.call.apply(t, [this].concat(o)))),
           'draggedElementShadow',
           void 0
         ),
-        g(b(e), 'dragTarget', void 0),
-        g(b(e), 'positioner', null),
-        g(b(e), 'currentSelectedElementIds', []),
+        E(R(e), 'dragTarget', void 0),
+        E(R(e), 'positioner', null),
+        E(R(e), 'currentSelectedElementIds', []),
         e
       );
     }
     return (
-      y(n, [
+      g(n, [
         {
           key: 'onDisable',
           value: function () {
@@ -1460,7 +1452,7 @@ var pe = function (e, t) {
                     var o = t.query.getEvent('selected').all(),
                       a = e.options.isMultiSelectEnabled(n),
                       i = e.currentSelectedElementIds.includes(r),
-                      d = T(o);
+                      d = D(o);
                     a && i
                       ? (d.splice(d.indexOf(r), 1),
                         t.actions.setNodeEvent('selected', d))
@@ -1478,9 +1470,16 @@ var pe = function (e, t) {
                   e.craft.stopPropagation(),
                     t.actions.setNodeEvent('hovered', r);
                 });
-                return function () {
-                  o();
-                };
+                return (
+                  e.options.removeHoverOnMouseleave &&
+                    e.addCraftEventListener(n, 'mouseleave', function (e) {
+                      e.craft.stopPropagation(),
+                        t.actions.setNodeEvent('hovered', null);
+                    }),
+                  function () {
+                    o();
+                  }
+                );
               },
               drop: function (n, r) {
                 var o = e.addCraftEventListener(n, 'dragover', function (n) {
@@ -1506,31 +1505,27 @@ var pe = function (e, t) {
                   a(), o();
                 };
               },
-              drag: function (r, o) {
-                if (!t.query.node(o).isDraggable()) return function () {};
-                r.setAttribute('draggable', 'true');
-                var a = e.addCraftEventListener(r, 'dragstart', function (r) {
-                    r.craft.stopPropagation();
-                    var a = t.query,
-                      i = t.actions,
-                      d = a.getEvent('selected').all(),
-                      s = e.options.isMultiSelectEnabled(r);
-                    e.currentSelectedElementIds.includes(o) ||
-                      ((d = s ? [].concat(T(d), [o]) : [o]),
-                      t.actions.setNodeEvent('selected', d)),
-                      i.setNodeEvent('dragged', d);
-                    var c = d.map(function (e) {
-                      return a.node(e).get().dom;
-                    });
-                    (e.draggedElementShadow = pe(
-                      r,
-                      c,
-                      n.forceSingleDragShadow
-                    )),
-                      (e.dragTarget = { type: 'existing', nodes: d }),
-                      (e.positioner = new fe(e.options.store, e.dragTarget));
+              drag: function (n, r) {
+                if (!t.query.node(r).isDraggable()) return function () {};
+                n.setAttribute('draggable', 'true');
+                var o = e.addCraftEventListener(n, 'dragstart', function (n) {
+                    n.craft.stopPropagation();
+                    var o = t.query,
+                      a = t.actions,
+                      i = o.getEvent('selected').all(),
+                      d = e.options.isMultiSelectEnabled(n);
+                    e.currentSelectedElementIds.includes(r) ||
+                      ((i = d ? [].concat(D(i), [r]) : [r]),
+                      t.actions.setNodeEvent('selected', i)),
+                      a.setNodeEvent('dragged', i),
+                      i.map(function (e) {
+                        return o.node(e).get().dom;
+                      }),
+                      (e.draggedElementShadow = ge(n)),
+                      (e.dragTarget = { type: 'existing', nodes: i }),
+                      (e.positioner = new ye(e.options.store, e.dragTarget));
                   }),
-                  i = e.addCraftEventListener(r, 'dragend', function (n) {
+                  a = e.addCraftEventListener(n, 'dragend', function (n) {
                     n.craft.stopPropagation(),
                       e.dropElement(function (e, n) {
                         'new' !== e.type &&
@@ -1543,28 +1538,24 @@ var pe = function (e, t) {
                       });
                   });
                 return function () {
-                  r.setAttribute('draggable', 'false'), a(), i();
+                  n.setAttribute('draggable', 'false'), o(), a();
                 };
               },
-              create: function (o, a, d) {
-                o.setAttribute('draggable', 'true');
-                var s = e.addCraftEventListener(o, 'dragstart', function (r) {
+              create: function (n, r, o) {
+                n.setAttribute('draggable', 'true');
+                var a = e.addCraftEventListener(n, 'dragstart', function (n) {
                     var o;
-                    if ((r.craft.stopPropagation(), 'function' == typeof a)) {
-                      var d = a();
-                      o = i.default.isValidElement(d)
-                        ? t.query.parseReactElement(d).toNodeTree()
-                        : d;
-                    } else o = t.query.parseReactElement(a).toNodeTree();
-                    (e.draggedElementShadow = pe(
-                      r,
-                      [r.currentTarget],
-                      n.forceSingleDragShadow
-                    )),
+                    if ((n.craft.stopPropagation(), 'function' == typeof r)) {
+                      var a = r();
+                      o = i.default.isValidElement(a)
+                        ? t.query.parseReactElement(a).toNodeTree()
+                        : a;
+                    } else o = t.query.parseReactElement(r).toNodeTree();
+                    (e.draggedElementShadow = ge(n)),
                       (e.dragTarget = { type: 'new', tree: o }),
-                      (e.positioner = new fe(e.options.store, e.dragTarget));
+                      (e.positioner = new ye(e.options.store, e.dragTarget));
                   }),
-                  c = e.addCraftEventListener(o, 'dragend', function (n) {
+                  d = e.addCraftEventListener(n, 'dragend', function (n) {
                     n.craft.stopPropagation(),
                       e.dropElement(function (e, n) {
                         'existing' !== e.type &&
@@ -1574,11 +1565,11 @@ var pe = function (e, t) {
                             n.placement.index +
                               ('after' === n.placement.where ? 1 : 0)
                           ),
-                          d && r.isFunction(d.onCreate) && d.onCreate(e.tree));
+                          o && s.default(o.onCreate) && o.onCreate(e.tree));
                       });
                   });
                 return function () {
-                  o.removeAttribute('draggable'), s(), c();
+                  n.removeAttribute('draggable'), a(), d();
                 };
               },
             };
@@ -1608,7 +1599,7 @@ var pe = function (e, t) {
       n
     );
   })();
-function he(e, t, n) {
+function me(e, t, n) {
   var r = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 2,
     o = 0,
     a = 0,
@@ -1644,22 +1635,23 @@ function he(e, t, n) {
     }
   );
 }
-g(ve, 'forceSingleDragShadow', e.isChromium() && e.isLinux());
-const ye = () => {
-    const { indicator: n, indicatorOptions: r, enabled: o } = w((e) => ({
+E(Ee, 'forceSingleDragShadow', e.isChromium() && e.isLinux());
+const Oe = () => {
+    const { indicator: n, indicatorOptions: r, enabled: o } = j((e) => ({
         indicator: e.indicator,
         indicatorOptions: e.options.indicator,
         enabled: e.options.enabled,
       })),
-      a = x();
+      a = k();
     return (
       t.useEffect(() => {
         a && (o ? a.enable() : a.disable());
       }, [o, a]),
       n
         ? i.default.createElement(e.RenderIndicator, {
+            className: r.className,
             style: {
-              ...he(
+              ...me(
                 n.placement,
                 e.getDOMInfo(n.placement.parent.dom),
                 n.placement.currentNode &&
@@ -1668,25 +1660,26 @@ const ye = () => {
               ),
               backgroundColor: n.error ? r.error : r.success,
               transition: r.transition || '0.2s ease-in',
+              ...(r.style ?? {}),
             },
             parentDom: n.placement.parent.dom,
           })
         : null
     );
   },
-  ge = ({ children: e }) => {
-    const n = t.useContext(I),
+  Ne = ({ children: e }) => {
+    const n = t.useContext(x),
       r = t.useMemo(() => n.query.getOptions().handlers(n), [n]);
     return r
       ? i.default.createElement(
-          S.Provider,
+          w.Provider,
           { value: r },
-          i.default.createElement(ye, null),
+          i.default.createElement(Oe, null),
           e
         )
       : null;
   },
-  Ee = {
+  be = {
     nodes: {},
     events: {
       dragged: new Set(),
@@ -1703,14 +1696,18 @@ const ye = () => {
       enabled: !0,
       indicator: { error: 'red', success: 'rgb(98, 196, 98)' },
       handlers: (e) =>
-        new ve({ store: e, isMultiSelectEnabled: (e) => !!e.metaKey }),
+        new Ee({
+          store: e,
+          removeHoverOnMouseleave: !1,
+          isMultiSelectEnabled: (e) => !!e.metaKey,
+        }),
       normalizeNodes: () => {},
     },
   },
-  me = {
+  Re = {
     methods: function (t, n) {
-      return f(
-        f(
+      return p(
+        p(
           {},
           (function (t, n) {
             var r = function (n, r, a) {
@@ -1725,10 +1722,10 @@ const ye = () => {
                           ''.concat(i.data.type.name)
                         )
                       ),
-                      (t.nodes[o] = f(
-                        f({}, i),
+                      (t.nodes[o] = p(
+                        p({}, i),
                         {},
-                        { data: f(f({}, i.data), {}, { parent: a }) }
+                        { data: p(p({}, i.data), {}, { parent: a }) }
                       )),
                       i.data.nodes.length > 0 &&
                         (delete t.nodes[o].data.props.children,
@@ -1739,7 +1736,7 @@ const ye = () => {
                         return r(e, i.id);
                       });
                   })(n.rootNodeId, r),
-                  r)
+                  r || n.rootNodeId !== e.ROOT_NODE)
                 ) {
                   var i = o(r);
                   if ('child' !== a.type)
@@ -1750,11 +1747,7 @@ const ye = () => {
                       ? i.data.nodes.splice(s, 0, n.rootNodeId)
                       : i.data.nodes.push(n.rootNodeId);
                   }
-                } else
-                  d.default(
-                    n.rootNodeId === e.ROOT_NODE,
-                    'Cannot add non-root Node without a parent'
-                  );
+                }
               },
               o = function (n) {
                 d.default(n, e.ERROR_NOPARENT);
@@ -1766,7 +1759,7 @@ const ye = () => {
                   o = t.nodes[r.data.parent];
                 if (
                   (r.data.nodes &&
-                    T(r.data.nodes).forEach(function (t) {
+                    D(r.data.nodes).forEach(function (t) {
                       return e(t);
                     }),
                   r.data.linkedNodes &&
@@ -1811,7 +1804,7 @@ const ye = () => {
                   }),
                   (a = t)),
                   a.forEach(function (e) {
-                    r({ nodes: g({}, e.id, e), rootNodeId: e.id }, n, {
+                    r({ nodes: E({}, e.id, e), rootNodeId: e.id }, n, {
                       type: 'child',
                       index: o,
                     });
@@ -1825,7 +1818,7 @@ const ye = () => {
                   arguments.length > 1 &&
                   void 0 !== arguments[1] &&
                   arguments[1];
-                Y(t.nodes, r, { existOnly: !0, idOnly: !0 }).forEach(function (
+                K(t.nodes, r, { existOnly: !0, idOnly: !0 }).forEach(function (
                   t
                 ) {
                   var r = t.node;
@@ -1850,10 +1843,10 @@ const ye = () => {
                       ]
                     );
                   });
-                this.replaceNodes(X(o));
+                this.replaceNodes(Y(o));
               },
               move: function (e, r, o) {
-                var a = Y(t.nodes, e, { existOnly: !0 }),
+                var a = K(t.nodes, e, { existOnly: !0 }),
                   i = t.nodes[r],
                   d = new Set();
                 a.forEach(function (e, a) {
@@ -1873,7 +1866,7 @@ const ye = () => {
                 }),
                   d.forEach(function (e) {
                     var t = e.length;
-                    T(e)
+                    D(e)
                       .reverse()
                       .forEach(function (n, r) {
                         '$$' === n && e.splice(t - 1 - r, 1);
@@ -1904,7 +1897,7 @@ const ye = () => {
                   (t.events[e] = new Set()),
                   n)
                 ) {
-                  var r = Y(t.nodes, n, { idOnly: !0, existOnly: !0 }),
+                  var r = K(t.nodes, n, { idOnly: !0, existOnly: !0 }),
                     o = new Set(
                       r.map(function (e) {
                         return e.node.id;
@@ -1917,7 +1910,7 @@ const ye = () => {
                 }
               },
               setCustom: function (e, n) {
-                Y(t.nodes, e, { idOnly: !0, existOnly: !0 }).forEach(function (
+                K(t.nodes, e, { idOnly: !0, existOnly: !0 }).forEach(function (
                   e
                 ) {
                   return n(t.nodes[e.node.id].data.custom);
@@ -1937,7 +1930,7 @@ const ye = () => {
                 t.nodes[e].data.hidden = n;
               },
               setProp: function (e, n) {
-                Y(t.nodes, e, { idOnly: !0, existOnly: !0 }).forEach(function (
+                K(t.nodes, e, { idOnly: !0, existOnly: !0 }).forEach(function (
                   e
                 ) {
                   return n(t.nodes[e.node.id].data.props);
@@ -1945,7 +1938,7 @@ const ye = () => {
               },
               selectNode: function (e) {
                 if (e) {
-                  var n = Y(t.nodes, e, { idOnly: !0, existOnly: !0 });
+                  var n = K(t.nodes, e, { idOnly: !0, existOnly: !0 });
                   this.setNodeEvent(
                     'selected',
                     n.map(function (e) {
@@ -1957,7 +1950,7 @@ const ye = () => {
               },
               hoverNode: function (e) {
                 if (e) {
-                  var n = Y(t.nodes, e, { idOnly: !0, existOnly: !0 });
+                  var n = K(t.nodes, e, { idOnly: !0, existOnly: !0 });
                   this.setNodeEvent(
                     'hovered',
                     n.map(function (e) {
@@ -1972,7 +1965,7 @@ const ye = () => {
         {},
         {
           setState: function (e) {
-            var n = N(this, J);
+            var n = b(this, Q);
             e(t, n);
           },
         }
@@ -2004,42 +1997,42 @@ const ye = () => {
         });
     },
   },
-  Oe = (t, n) =>
-    e.useMethods(me, { ...Ee, options: { ...Ee.options, ...t } }, ce, n);
-var Ne = ['events', 'data'],
-  be = ['nodes'],
-  Re = ['nodes'],
-  Te = ['_hydrationTimestamp', 'rules'],
-  De = ['_hydrationTimestamp', 'rules'],
-  _e = function (e) {
+  Te = (t, n) =>
+    e.useMethods(Re, { ...be, options: { ...be.options, ...t } }, fe, n);
+var _e = ['events', 'data'],
+  De = ['nodes'],
+  Ce = ['nodes'],
+  Ie = ['_hydrationTimestamp', 'rules'],
+  Se = ['_hydrationTimestamp', 'rules'],
+  xe = function (e) {
     var t = e.events,
       n = e.data,
       r = n.nodes,
       o = n.linkedNodes,
-      a = N(e, Ne),
-      i = oe(s.default(e));
+      a = b(e, _e),
+      i = de(c.default(e));
     return {
-      node: (e = f(
-        f(f({}, i), a),
+      node: (e = p(
+        p(p({}, i), a),
         {},
-        { events: f(f({}, i.events), t), dom: e.dom || i.dom }
+        { events: p(p({}, i.events), t), dom: e.dom || i.dom }
       )),
       childNodes: r,
       linkedNodes: o,
     };
   },
-  Ce = function (e) {
+  we = function (e) {
     var t = {};
     return (
       (function e(n) {
-        var r = _e(n),
+        var r = xe(n),
           o = r.node,
           a = r.childNodes,
           i = r.linkedNodes;
         (t[o.id] = o),
           a &&
             a.forEach(function (n, r) {
-              var a = _e(n),
+              var a = xe(n),
                 i = a.node,
                 d = a.childNodes,
                 s = a.linkedNodes;
@@ -2047,12 +2040,12 @@ var Ne = ['events', 'data'],
                 (t[i.id] = i),
                 (o.data.nodes[r] = i.id),
                 e(
-                  f(
-                    f({}, i),
+                  p(
+                    p({}, i),
                     {},
                     {
-                      data: f(
-                        f({}, i.data),
+                      data: p(
+                        p({}, i.data),
                         {},
                         { nodes: d || [], linkedNodes: s || {} }
                       ),
@@ -2062,7 +2055,7 @@ var Ne = ['events', 'data'],
             }),
           i &&
             Object.keys(i).forEach(function (n) {
-              var r = _e(i[n]),
+              var r = xe(i[n]),
                 a = r.node,
                 d = r.childNodes,
                 s = r.linkedNodes;
@@ -2070,12 +2063,12 @@ var Ne = ['events', 'data'],
                 (a.data.parent = o.id),
                 (t[a.id] = a),
                 e(
-                  f(
-                    f({}, a),
+                  p(
+                    p({}, a),
                     {},
                     {
-                      data: f(
-                        f({}, a.data),
+                      data: p(
+                        p({}, a.data),
                         {},
                         { nodes: d || [], linkedNodes: s || {} }
                       ),
@@ -2093,19 +2086,21 @@ Object.defineProperty(exports, 'ROOT_NODE', {
     return e.ROOT_NODE;
   },
 }),
-  (exports.ActionMethodsWithConfig = me),
+  (exports.ActionMethodsWithConfig = Re),
   (exports.Canvas = Canvas),
-  (exports.CoreEventHandlers = ue),
-  (exports.DefaultEventHandlers = ve),
-  (exports.DerivedCoreEventHandlers = le),
+  (exports.CoreEventHandlers = pe),
+  (exports.DefaultEventHandlers = Ee),
+  (exports.DerivedCoreEventHandlers = ve),
   (exports.Editor = ({ children: n, ...r }) => {
     void 0 !== r.resolver &&
       d.default(
-        'object' == typeof r.resolver && !Array.isArray(r.resolver),
+        'object' == typeof r.resolver &&
+          !Array.isArray(r.resolver) &&
+          null !== r.resolver,
         e.ERROR_RESOLVER_NOT_AN_OBJECT
       );
     const o = t.useRef(r),
-      a = Oe(o.current, (t, n, r, o, a) => {
+      a = Te(o.current, (t, n, r, o, a) => {
         if (!r) return;
         const { patches: i, ...d } = r;
         for (let r = 0; r < i.length; r++) {
@@ -2129,7 +2124,6 @@ Object.defineProperty(exports, 'ROOT_NODE', {
     return (
       t.useEffect(() => {
         a &&
-          r &&
           void 0 !== r.enabled &&
           a.query.getOptions().enabled !== r.enabled &&
           a.actions.setOptions((e) => {
@@ -2146,88 +2140,90 @@ Object.defineProperty(exports, 'ROOT_NODE', {
       }, [a]),
       a
         ? i.default.createElement(
-            I.Provider,
+            x.Provider,
             { value: a },
-            i.default.createElement(ge, null, n)
+            i.default.createElement(Ne, null, n)
           )
         : null
     );
   }),
-  (exports.Element = z),
-  (exports.Events = ge),
+  (exports.Element = B),
+  (exports.Events = Ne),
   (exports.Frame = ({ children: n, json: r, data: o }) => {
-    const { actions: a, query: d } = w();
+    const { actions: a, query: d } = j();
     r &&
       e.deprecationWarning('<Frame json={...} />', {
         suggest: '<Frame data={...} />',
       });
-    const s = t.useRef({ initialChildren: n, initialData: o || r });
-    return (
-      t.useEffect(() => {
-        const { initialChildren: t, initialData: n } = s.current;
-        if (n) a.history.ignore().deserialize(n);
-        else if (t) {
-          const n = i.default.Children.only(t),
-            r = d
-              .parseReactElement(n)
-              .toNodeTree((t, r) => (r === n && (t.id = e.ROOT_NODE), t));
-          a.history.ignore().addNodeTree(r);
-        }
-      }, [a, d]),
-      i.default.createElement(W, null)
-    );
+    const s = t.useRef(!1);
+    if (!s.current) {
+      const t = o || r;
+      if (t) a.history.ignore().deserialize(t);
+      else if (n) {
+        const t = i.default.Children.only(n),
+          r = d
+            .parseReactElement(t)
+            .toNodeTree((n, r) => (r === t && (n.id = e.ROOT_NODE), n));
+        a.history.ignore().addNodeTree(r);
+      }
+      s.current = !0;
+    }
+    return i.default.createElement($, null);
   }),
-  (exports.NodeElement = V),
-  (exports.NodeHelpers = te),
-  (exports.NodeProvider = u),
-  (exports.QueryMethods = ce),
+  (exports.NodeElement = H),
+  (exports.NodeHelpers = oe),
+  (exports.NodeProvider = l),
+  (exports.Positioner = ye),
+  (exports.QueryMethods = fe),
   (exports.connectEditor = function (e) {
     return (t) => (n) => {
-      const r = e ? G(e) : G();
+      const r = e ? X(e) : X();
       return i.default.createElement(t, { ...r, ...n });
     };
   }),
   (exports.connectNode = function (e) {
     return function (t) {
       return (n) => {
-        const r = A(e);
+        const r = M(e);
         return i.default.createElement(t, { ...r, ...n });
       };
     };
   }),
-  (exports.createTestNodes = Ce),
+  (exports.createShadow = ge),
+  (exports.createTestNodes = we),
   (exports.createTestState = function () {
     var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {},
       t = e.nodes,
       n = e.events;
-    return f(
-      f(f({}, Ee), e),
+    return p(
+      p(p({}, be), e),
       {},
-      { nodes: t ? Ce(t) : {}, events: f(f({}, Ee.events), n || {}) }
+      { nodes: t ? we(t) : {}, events: p(p({}, be.events), n || {}) }
     );
   }),
-  (exports.defaultElementProps = F),
-  (exports.deprecateCanvasComponent = B),
-  (exports.editorInitialState = Ee),
-  (exports.elementPropToNodeData = H),
+  (exports.defaultElementProps = z),
+  (exports.deprecateCanvasComponent = U),
+  (exports.editorInitialState = be),
+  (exports.elementPropToNodeData = W),
   (exports.expectEditorState = function (e, t) {
     var n = t.nodes,
-      r = N(t, be),
+      r = b(t, De),
       o = e.nodes,
-      a = N(e, Re);
+      a = b(e, Ce);
     expect(a).toEqual(r);
     var i = Object.keys(n).reduce(function (e, t) {
-        var r = N(n[t], Te);
+        var r = b(n[t], Ie);
         return (e[t] = r), e;
       }, {}),
       d = Object.keys(o).reduce(function (e, t) {
-        var n = N(o[t], De);
+        var n = b(o[t], Se);
         return (e[t] = n), e;
       }, {});
     expect(d).toEqual(i);
   }),
-  (exports.serializeNode = ee),
-  (exports.useEditor = G),
-  (exports.useEditorStore = Oe),
-  (exports.useEventHandler = x),
-  (exports.useNode = A);
+  (exports.serializeNode = re),
+  (exports.useEditor = X),
+  (exports.useEditorStore = Te),
+  (exports.useEventHandler = k),
+  (exports.useNode = M);
+//# sourceMappingURL=index.js.map

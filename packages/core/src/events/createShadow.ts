@@ -18,6 +18,6 @@ export const createShadow = (
   invisibleElement.style.opacity = '0';
   document.body.appendChild(invisibleElement);
   e.dataTransfer.setDragImage(invisibleElement, 0, 0);
-  console.log("invisibleElement", invisibleElement);
+  console.log('invisibleElement', invisibleElement);
   return invisibleElement;
 };

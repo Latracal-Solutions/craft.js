@@ -1,57 +1,59 @@
+'undefined' != typeof window &&
+  (window.__CRAFTJS__ || (window.__CRAFTJS__ = {}),
+  (window.__CRAFTJS__['@craftjs/core'] = '0.2.12'));
 import {
   ERROR_USE_EDITOR_OUTSIDE_OF_EDITOR_CONTEXT as e,
   useCollector as t,
   wrapConnectorHooks as n,
   ERROR_USE_NODE_OUTSIDE_OF_EDITOR_CONTEXT as r,
   deprecationWarning as o,
-  useEffectOnce as a,
-  ERROR_TOP_LEVEL_ELEMENT_NO_ID as i,
-  ROOT_NODE as d,
+  ERROR_TOP_LEVEL_ELEMENT_NO_ID as a,
+  ROOT_NODE as i,
   ERROR_INVALID_NODEID as s,
-  ERROR_DELETE_TOP_LEVEL_NODE as c,
-  ERROR_NOPARENT as u,
-  DEPRECATED_ROOT_NODE as l,
-  ERROR_NOT_IN_RESOLVER as f,
-  ERROR_INVALID_NODE_ID as p,
-  ERROR_MOVE_TOP_LEVEL_NODE as v,
-  ERROR_MOVE_NONCANVAS_CHILD as h,
-  ERROR_CANNOT_DRAG as y,
-  ERROR_MOVE_TO_NONCANVAS_PARENT as g,
-  ERROR_MOVE_INCOMING_PARENT as m,
-  ERROR_MOVE_CANNOT_DROP as N,
-  ERROR_MOVE_TO_DESCENDANT as E,
-  ERROR_DUPLICATE_NODEID as b,
-  ERROR_MOVE_OUTGOING_PARENT as O,
-  getRandomId as T,
+  ERROR_DELETE_TOP_LEVEL_NODE as d,
+  ERROR_NOPARENT as c,
+  DEPRECATED_ROOT_NODE as u,
+  ERROR_NOT_IN_RESOLVER as l,
+  ERROR_INVALID_NODE_ID as f,
+  ERROR_MOVE_TOP_LEVEL_NODE as p,
+  ERROR_MOVE_NONCANVAS_CHILD as v,
+  ERROR_CANNOT_DRAG as h,
+  ERROR_MOVE_TO_NONCANVAS_PARENT as y,
+  ERROR_MOVE_INCOMING_PARENT as g,
+  ERROR_MOVE_CANNOT_DROP as m,
+  ERROR_MOVE_TO_DESCENDANT as N,
+  ERROR_DUPLICATE_NODEID as E,
+  ERROR_MOVE_OUTGOING_PARENT as b,
+  getRandomId as O,
   ERROR_DESERIALIZE_COMPONENT_NOT_IN_RESOLVER as w,
-  getDOMInfo as k,
-  EventHandlers as C,
-  DerivedEventHandlers as S,
-  isChromium as j,
-  isLinux as D,
-  RenderIndicator as I,
-  useMethods as x,
-  ERROR_RESOLVER_NOT_AN_OBJECT as P,
-  HISTORY_ACTIONS as A,
+  getDOMInfo as T,
+  EventHandlers as k,
+  DerivedEventHandlers as C,
+  isChromium as S,
+  isLinux as j,
+  RenderIndicator as D,
+  useMethods as I,
+  ERROR_RESOLVER_NOT_AN_OBJECT as x,
+  HISTORY_ACTIONS as P,
 } from '@craftjs/utils';
 export { ROOT_NODE } from '@craftjs/utils';
-import q, {
+import A, {
   createContext as R,
-  useContext as L,
-  useMemo as _,
-  useEffect as F,
-  useState as z,
+  useContext as q,
+  useMemo as L,
+  useEffect as _,
+  useState as F,
   useRef as M,
-  Children as B,
+  Children as z,
   Fragment as H,
 } from 'react';
-import $ from 'tiny-invariant';
-import { isFunction as W } from 'lodash';
+import B from 'tiny-invariant';
+import $ from 'lodash/isFunction';
 import J from 'lodash/cloneDeep';
-const U = q.createContext(null),
-  V = ({ id: e, related: t = !1, children: n }) =>
-    q.createElement(U.Provider, { value: { id: e, related: t } }, n);
-function X(e, t) {
+const W = A.createContext(null),
+  U = ({ id: e, related: t = !1, children: n }) =>
+    A.createElement(W.Provider, { value: { id: e, related: t } }, n);
+function V(e, t) {
   var n = Object.keys(e);
   if (Object.getOwnPropertySymbols) {
     var r = Object.getOwnPropertySymbols(e);
@@ -63,24 +65,24 @@ function X(e, t) {
   }
   return n;
 }
-function Y(e) {
+function G(e) {
   for (var t = 1; t < arguments.length; t++) {
     var n = null != arguments[t] ? arguments[t] : {};
     t % 2
-      ? X(Object(n), !0).forEach(function (t) {
-          ee(e, t, n[t]);
+      ? V(Object(n), !0).forEach(function (t) {
+          Z(e, t, n[t]);
         })
       : Object.getOwnPropertyDescriptors
       ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(n))
-      : X(Object(n)).forEach(function (t) {
+      : V(Object(n)).forEach(function (t) {
           Object.defineProperty(e, t, Object.getOwnPropertyDescriptor(n, t));
         });
   }
   return e;
 }
-function G(e) {
+function K(e) {
   return (
-    (G =
+    (K =
       'function' == typeof Symbol && 'symbol' == typeof Symbol.iterator
         ? function (e) {
             return typeof e;
@@ -93,14 +95,14 @@ function G(e) {
               ? 'symbol'
               : typeof e;
           }),
-    G(e)
+    K(e)
   );
 }
-function K(e, t) {
+function X(e, t) {
   if (!(e instanceof t))
     throw new TypeError('Cannot call a class as a function');
 }
-function Q(e, t) {
+function Y(e, t) {
   for (var n = 0; n < t.length; n++) {
     var r = t[n];
     (r.enumerable = r.enumerable || !1),
@@ -109,15 +111,15 @@ function Q(e, t) {
       Object.defineProperty(e, ue(r.key), r);
   }
 }
-function Z(e, t, n) {
+function Q(e, t, n) {
   return (
-    t && Q(e.prototype, t),
-    n && Q(e, n),
+    t && Y(e.prototype, t),
+    n && Y(e, n),
     Object.defineProperty(e, 'prototype', { writable: !1 }),
     e
   );
 }
-function ee(e, t, n) {
+function Z(e, t, n) {
   return (
     (t = ue(t)) in e
       ? Object.defineProperty(e, t, {
@@ -130,36 +132,36 @@ function ee(e, t, n) {
     e
   );
 }
-function te(e, t) {
+function ee(e, t) {
   if ('function' != typeof t && null !== t)
     throw new TypeError('Super expression must either be null or a function');
   (e.prototype = Object.create(t && t.prototype, {
     constructor: { value: e, writable: !0, configurable: !0 },
   })),
     Object.defineProperty(e, 'prototype', { writable: !1 }),
-    t && re(e, t);
+    t && ne(e, t);
 }
-function ne(e) {
+function te(e) {
   return (
-    (ne = Object.setPrototypeOf
+    (te = Object.setPrototypeOf
       ? Object.getPrototypeOf.bind()
       : function (e) {
           return e.__proto__ || Object.getPrototypeOf(e);
         }),
-    ne(e)
+    te(e)
   );
 }
-function re(e, t) {
+function ne(e, t) {
   return (
-    (re = Object.setPrototypeOf
+    (ne = Object.setPrototypeOf
       ? Object.setPrototypeOf.bind()
       : function (e, t) {
           return (e.__proto__ = t), e;
         }),
-    re(e, t)
+    ne(e, t)
   );
 }
-function oe(e, t) {
+function re(e, t) {
   if (null == e) return {};
   var n,
     r,
@@ -181,14 +183,14 @@ function oe(e, t) {
   }
   return o;
 }
-function ae(e) {
+function oe(e) {
   if (void 0 === e)
     throw new ReferenceError(
       "this hasn't been initialised - super() hasn't been called"
     );
   return e;
 }
-function ie(e) {
+function ae(e) {
   var t = (function () {
     if ('undefined' == typeof Reflect || !Reflect.construct) return !1;
     if (Reflect.construct.sham) return !1;
@@ -206,9 +208,9 @@ function ie(e) {
   })();
   return function () {
     var n,
-      r = ne(e);
+      r = te(e);
     if (t) {
-      var o = ne(this).constructor;
+      var o = te(this).constructor;
       n = Reflect.construct(r, arguments, o);
     } else n = r.apply(this, arguments);
     return (function (e, t) {
@@ -217,11 +219,61 @@ function ie(e) {
         throw new TypeError(
           'Derived constructors may only return object or undefined'
         );
-      return ae(e);
+      return oe(e);
     })(this, n);
   };
 }
-function de(e) {
+function ie(e, t) {
+  return (
+    (function (e) {
+      if (Array.isArray(e)) return e;
+    })(e) ||
+    (function (e, t) {
+      var n =
+        null == e
+          ? null
+          : ('undefined' != typeof Symbol && e[Symbol.iterator]) ||
+            e['@@iterator'];
+      if (null != n) {
+        var r,
+          o,
+          a,
+          i,
+          s = [],
+          d = !0,
+          c = !1;
+        try {
+          if (((a = (n = n.call(e)).next), 0 === t)) {
+            if (Object(n) !== n) return;
+            d = !1;
+          } else
+            for (
+              ;
+              !(d = (r = a.call(n)).done) && (s.push(r.value), s.length !== t);
+              d = !0
+            );
+        } catch (e) {
+          (c = !0), (o = e);
+        } finally {
+          try {
+            if (!d && null != n.return && ((i = n.return()), Object(i) !== i))
+              return;
+          } finally {
+            if (c) throw o;
+          }
+        }
+        return s;
+      }
+    })(e, t) ||
+    de(e, t) ||
+    (function () {
+      throw new TypeError(
+        'Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
+      );
+    })()
+  );
+}
+function se(e) {
   return (
     (function (e) {
       if (Array.isArray(e)) return ce(e);
@@ -233,7 +285,7 @@ function de(e) {
       )
         return Array.from(e);
     })(e) ||
-    se(e) ||
+    de(e) ||
     (function () {
       throw new TypeError(
         'Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
@@ -241,7 +293,7 @@ function de(e) {
     })()
   );
 }
-function se(e, t) {
+function de(e, t) {
   if (e) {
     if ('string' == typeof e) return ce(e, t);
     var n = Object.prototype.toString.call(e).slice(8, -1);
@@ -277,81 +329,81 @@ function ue(e) {
 const le = R(null);
 var fe = R(null),
   pe = function () {
-    return L(fe);
+    return q(fe);
   };
 function ve(r) {
   var o = pe(),
-    a = L(le);
-  $(a, e);
+    a = q(le);
+  B(a, e);
   var i = t(a, r),
-    d = _(
+    s = L(
       function () {
         return o && o.createConnectorsUsage();
       },
       [o]
     );
-  F(
+  _(
     function () {
       return (
-        d.register(),
+        s.register(),
         function () {
-          d.cleanup();
+          s.cleanup();
         }
       );
     },
-    [d]
+    [s]
   );
-  var s = _(
+  var d = L(
     function () {
-      return d && n(d.connectors);
+      return s && n(s.connectors);
     },
-    [d]
+    [s]
   );
-  return Y(Y({}, i), {}, { connectors: s, inContext: !!a, store: a });
+  return G(G({}, i), {}, { connectors: d, inContext: !!a, store: a });
 }
 var he = ['actions', 'query', 'connectors'];
 function ye(e) {
-  var t = L(U);
-  $(t, r);
+  var t = q(W);
+  B(t, r);
   var o = t.id,
     a = t.related,
     i = ve(function (t) {
       return o && t.nodes[o] && e && e(t.nodes[o]);
     }),
-    d = i.actions,
-    s = i.connectors,
-    c = oe(i, he),
-    u = _(
+    s = i.actions,
+    d = i.connectors,
+    c = re(i, he),
+    u = L(
       function () {
         return n({
           connect: function (e) {
-            return s.connect(e, o);
+            return d.connect(e, o);
           },
           drag: function (e) {
-            return s.drag(e, o);
+            return d.drag(e, o);
           },
         });
       },
-      [s, o]
+      [d, o]
     ),
-    l = _(
+    l = L(
       function () {
         return {
           setProp: function (e, t) {
-            t ? d.history.throttle(t).setProp(o, e) : d.setProp(o, e);
+            t ? s.history.throttle(t).setProp(o, e) : s.setProp(o, e);
           },
           setCustom: function (e, t) {
-            t ? d.history.throttle(t).setCustom(o, e) : d.setCustom(o, e);
+            t ? s.history.throttle(t).setCustom(o, e) : s.setCustom(o, e);
           },
           setHidden: function (e) {
-            return d.setHidden(o, e);
+            return s.setHidden(o, e);
           },
         };
       },
-      [d, o]
+      [s, o]
     );
-  return Y(
-    Y({}, c),
+  return G(
+    G({}, c),
     {},
     { id: o, related: a, inNodeContext: !!t, actions: l, connectors: u }
   );
@@ -363,9 +415,9 @@ function me(e) {
     r = t.related,
     a = t.actions,
     i = t.inNodeContext,
-    d = t.connectors;
-  return Y(
-    Y({}, oe(t, ge)),
+    s = t.connectors;
+  return G(
+    G({}, re(t, ge)),
     {},
     {
       actions: a,
@@ -378,7 +430,7 @@ function me(e) {
         );
       },
       inNodeContext: i,
-      connectors: d,
+      connectors: s,
     }
   );
 }
@@ -386,7 +438,7 @@ const Ne = ({ render: e }) => {
     const {
       connectors: { connect: t, drag: n },
     } = me();
-    return 'string' == typeof e.type ? t(n(q.cloneElement(e))) : e;
+    return 'string' == typeof e.type ? t(n(A.cloneElement(e))) : e;
   },
   Ee = () => {
     const { type: e, props: t, nodes: n, hydrationTimestamp: r } = ye((e) => ({
@@ -395,17 +447,17 @@ const Ne = ({ render: e }) => {
       nodes: e.data.nodes,
       hydrationTimestamp: e._hydrationTimestamp,
     }));
-    return _(() => {
+    return L(() => {
       let r = t.children;
       n &&
         n.length > 0 &&
-        (r = q.createElement(
-          q.Fragment,
+        (r = A.createElement(
+          A.Fragment,
           null,
-          n.map((e) => q.createElement(Oe, { id: e, key: e }))
+          n.map((e) => A.createElement(Oe, { id: e, key: e }))
         ));
-      const o = q.createElement(e, t, r);
-      return 'string' == typeof e ? q.createElement(Ne, { render: o }) : o;
+      const o = A.createElement(e, t, r);
+      return 'string' == typeof e ? A.createElement(Ne, { render: o }) : o;
     }, [e, t, r, n]);
   },
   be = ({ render: e }) => {
@@ -413,67 +465,59 @@ const Ne = ({ render: e }) => {
       { onRender: n } = ve((e) => ({ onRender: e.options.onRender }));
     return t
       ? null
-      : q.createElement(n, { render: e || q.createElement(Ee, null) });
+      : A.createElement(n, { render: e || A.createElement(Ee, null) });
   },
   Oe = ({ id: e, render: t }) =>
-    q.createElement(V, { id: e }, q.createElement(be, { render: t })),
-  Te = { is: 'div', canvas: !1, custom: {}, hidden: !1 },
-  we = { is: 'type', canvas: 'isCanvas' };
+    A.createElement(U, { id: e }, A.createElement(be, { render: t })),
+  we = { is: 'div', canvas: !1, custom: {}, hidden: !1 },
+  Te = { is: 'type', canvas: 'isCanvas' };
 function ke({ id: e, children: t, ...n }) {
-  const { is: r } = { ...Te, ...n },
-    { query: o, actions: d } = ve(),
-    { node: s, inNodeContext: c } = ye((e) => ({
-      node: { id: e.id, data: e.data },
-    })),
-    [u, l] = z(null);
-  return (
-    a(() => {
-      $(!!e, i);
-      const { id: a, data: u } = s;
-      if (c) {
-        let i;
-        const s =
-          u.linkedNodes && u.linkedNodes[e] && o.node(u.linkedNodes[e]).get();
-        if (s && s.data.type === r) i = s.id;
-        else {
-          const r = q.createElement(ke, n, t),
-            s = o.parseReactElement(r).toNodeTree();
-          (i = s.rootNodeId), d.history.ignore().addLinkedNodeFromTree(s, a, e);
-        }
-        l(i);
+  const { is: r } = { ...we, ...n },
+    { query: o, actions: i } = ve(),
+    { id: s, inNodeContext: d } = ye(),
+    [c] = F(() => {
+      B(!!e, a);
+      const c = o.node(s).get();
+      if (d) {
+        const a = c.data.linkedNodes[e]
+          ? o.node(c.data.linkedNodes[e]).get()
+          : null;
+        if (a && a.data.type === r) return a.id;
+        const d = A.createElement(ke, n, t),
+          u = o.parseReactElement(d).toNodeTree();
+        return i.history.ignore().addLinkedNodeFromTree(u, s, e), u.rootNodeId;
       }
-    }),
-    u ? q.createElement(Oe, { id: u }) : null
-  );
+      return null;
+    });
+  return c ? A.createElement(Oe, { id: c }) : null;
 }
 const Ce = () => o('<Canvas />', { suggest: '<Element canvas={true} />' });
 function Canvas({ ...e }) {
-  return F(() => Ce(), []), q.createElement(ke, { ...e, canvas: !0 });
+  return _(() => Ce(), []), A.createElement(ke, { ...e, canvas: !0 });
 }
 const Se = () => {
     const { timestamp: e } = ve((e) => ({
-      timestamp: e.nodes[d] && e.nodes[d]._hydrationTimestamp,
+      timestamp: e.nodes[i] && e.nodes[i]._hydrationTimestamp,
     }));
-    return e ? q.createElement(Oe, { id: d, key: e }) : null;
+    return e ? A.createElement(Oe, { id: i, key: e }) : null;
   },
   je = ({ children: e, json: t, data: n }) => {
     const { actions: r, query: a } = ve();
     t && o('<Frame json={...} />', { suggest: '<Frame data={...} />' });
-    const i = M({ initialChildren: e, initialData: n || t });
-    return (
-      F(() => {
-        const { initialChildren: e, initialData: t } = i.current;
-        if (t) r.history.ignore().deserialize(t);
-        else if (e) {
-          const t = q.Children.only(e),
-            n = a
-              .parseReactElement(t)
-              .toNodeTree((e, n) => (n === t && (e.id = d), e));
-          r.history.ignore().addNodeTree(n);
-        }
-      }, [r, a]),
-      q.createElement(Se, null)
-    );
+    const s = M(!1);
+    if (!s.current) {
+      const o = n || t;
+      if (o) r.history.ignore().deserialize(o);
+      else if (e) {
+        const t = A.Children.only(e),
+          n = a
+            .parseReactElement(t)
+            .toNodeTree((e, n) => (n === t && (e.id = i), e));
+        r.history.ignore().addNodeTree(n);
+      }
+      s.current = !0;
+    }
+    return A.createElement(Se, null);
   };
 var De;
 !(function (e) {
@@ -495,7 +539,7 @@ function xe(e) {
     i = Ie(n);
   return {
     connectors: t,
-    actions: _(
+    actions: L(
       () => ({
         ...i,
         history: {
@@ -514,78 +558,30 @@ function xe(e) {
 function Pe(e) {
   return (t) => (n) => {
     const r = e ? xe(e) : xe();
-    return q.createElement(t, { ...r, ...n });
+    return A.createElement(t, { ...r, ...n });
   };
 }
 function Ae(e) {
   return function (t) {
     return (n) => {
       const r = me(e);
-      return q.createElement(t, { ...r, ...n });
+      return A.createElement(t, { ...r, ...n });
     };
   };
 }
-var qe = function (e) {
+var Re = function (e) {
     return Object.fromEntries
       ? Object.fromEntries(e)
       : e.reduce(function (e, t) {
-          var n,
-            r =
-              (function (e) {
-                if (Array.isArray(e)) return e;
-              })((n = t)) ||
-              (function (e, t) {
-                var n =
-                  null == e
-                    ? null
-                    : ('undefined' != typeof Symbol && e[Symbol.iterator]) ||
-                      e['@@iterator'];
-                if (null != n) {
-                  var r,
-                    o,
-                    a,
-                    i,
-                    d = [],
-                    s = !0,
-                    c = !1;
-                  try {
-                    for (
-                      a = (n = n.call(e)).next;
-                      !(s = (r = a.call(n)).done) &&
-                      (d.push(r.value), 2 !== d.length);
-                      s = !0
-                    );
-                  } catch (e) {
-                    (c = !0), (o = e);
-                  } finally {
-                    try {
-                      if (
-                        !s &&
-                        null != n.return &&
-                        ((i = n.return()), Object(i) !== i)
-                      )
-                        return;
-                    } finally {
-                      if (c) throw o;
-                    }
-                  }
-                  return d;
-                }
-              })(n) ||
-              se(n, 2) ||
-              (function () {
-                throw new TypeError(
-                  'Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
-                );
-              })(),
-            o = r[0],
-            a = r[1];
-          return Y(Y({}, e), {}, ee({}, o, a));
+          var n = ie(t, 2),
+            r = n[0],
+            o = n[1];
+          return G(G({}, e), {}, Z({}, r, o));
         }, {});
   },
-  Re = function (e, t, n) {
+  qe = function (e, t, n) {
     var r = Array.isArray(t) ? t : [t],
-      o = Y({ existOnly: !1, idOnly: !1 }, n || {}),
+      o = G({ existOnly: !1, idOnly: !1 }, n || {}),
       a = r
         .filter(function (e) {
           return !!e;
@@ -593,13 +589,13 @@ var qe = function (e) {
         .map(function (t) {
           return 'string' == typeof t
             ? { node: e[t], exists: !!e[t] }
-            : 'object' !== G(t) || o.idOnly
+            : 'object' !== K(t) || o.idOnly
             ? { node: null, exists: !1 }
             : { node: t, exists: !!e[t.id] };
         });
     return (
       o.existOnly &&
-        $(
+        B(
           0 ===
             a.filter(function (e) {
               return !e.exists;
@@ -610,19 +606,25 @@ var qe = function (e) {
     );
   },
   Le = ['history'],
-  _e = function (e, t) {
-    var n = t.name || t.displayName,
-      r = (function () {
-        if (e[n]) return n;
-        for (var r = 0; r < Object.keys(e).length; r++) {
-          var o = Object.keys(e)[r];
-          if (e[o] === t) return o;
-        }
-        return 'string' == typeof t ? t : void 0;
-      })();
-    return $(r, f.replace('%node_type%', n)), r;
+  _e = null,
+  Fe = function (e, t) {
+    if ('string' == typeof t) return t;
+    var n,
+      r = (function (e, t) {
+        var n = (function (e) {
+          if (_e && _e.resolver === e) return _e.reversed;
+          _e = { resolver: e, reversed: new Map() };
+          for (var t = 0, n = Object.entries(e); t < n.length; t++) {
+            var r = ie(n[t], 2);
+            _e.reversed.set(r[1], r[0]);
+          }
+          return _e.reversed;
+        })(e).get(t);
+        return void 0 !== n ? n : null;
+      })(e, t);
+    return B(r, l.replace('%node_type%', (n = t).name || n.displayName)), r;
   };
-const Fe = (e, t) => ('string' == typeof e ? e : { resolvedName: _e(t, e) }),
+const Me = (e, t) => ('string' == typeof e ? e : { resolvedName: Fe(t, e) }),
   ze = (e, t) => {
     let { type: n, isCanvas: r, props: o } = e;
     return (
@@ -633,22 +635,22 @@ const Fe = (e, t) => ('string' == typeof e ? e : { resolvedName: _e(t, e) }),
             'function' == typeof r ||
             (e[n] =
               'children' === n && 'string' != typeof r
-                ? B.map(r, (e) => ('string' == typeof e ? e : ze(e, t)))
+                ? z.map(r, (e) => ('string' == typeof e ? e : ze(e, t)))
                 : 'function' == typeof r.type
                 ? ze(r, t)
                 : r),
           e
         );
       }, {})),
-      { type: Fe(n, t), isCanvas: !!r, props: o }
+      { type: Me(n, t), isCanvas: !!r, props: o }
     );
   },
-  Me = (e, t) => {
+  He = (e, t) => {
     const { type: n, props: r, isCanvas: o, name: a, ...i } = e;
     return { ...ze({ type: n, isCanvas: o, props: r }, t), ...i };
   };
 function Be(e, t) {
-  $('string' == typeof t, p);
+  B('string' == typeof t, f);
   var n = e.nodes[t],
     r = function (t) {
       return Be(e, t);
@@ -658,7 +660,7 @@ function Be(e, t) {
       return !!n.data.isCanvas;
     },
     isRoot: function () {
-      return n.id === d;
+      return n.id === i;
     },
     isLinkedNode: function () {
       return n.data.parent && r(n.data.parent).linkedNodes().includes(n.id);
@@ -714,20 +716,20 @@ function Be(e, t) {
       return (function t(a) {
         var i =
             arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [],
-          d =
+          s =
             arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 0;
-        return (n || (!n && 0 === d)) && e.nodes[a]
+        return (n || (!n && 0 === s)) && e.nodes[a]
           ? ('childNodes' !== o &&
               r(a)
                 .linkedNodes()
                 .forEach(function (e) {
-                  i.push(e), (i = t(e, i, d + 1));
+                  i.push(e), (i = t(e, i, s + 1));
                 }),
             'linkedNodes' !== o &&
               r(a)
                 .childNodes()
                 .forEach(function (e) {
-                  i.push(e), (i = t(e, i, d + 1));
+                  i.push(e), (i = t(e, i, s + 1));
                 }),
             i)
           : i;
@@ -743,9 +745,9 @@ function Be(e, t) {
       try {
         var o = n;
         return (
-          $(!this.isTopLevelNode(), v),
-          $(Be(e, o.data.parent).isCanvas(), h),
-          $(o.rules.canDrag(o, r), y),
+          B(!this.isTopLevelNode(), p),
+          B(Be(e, o.data.parent).isCanvas(), v),
+          B(o.rules.canDrag(o, r), h),
           !0
         );
       } catch (e) {
@@ -753,11 +755,11 @@ function Be(e, t) {
       }
     },
     isDroppable: function (t, o) {
-      var a = Re(e.nodes, t),
+      var a = qe(e.nodes, t),
         i = n;
       try {
-        $(this.isCanvas(), g),
-          $(
+        B(this.isCanvas(), y),
+          B(
             i.rules.canMoveIn(
               a.map(function (e) {
                 return e.node;
@@ -765,26 +767,26 @@ function Be(e, t) {
               i,
               r
             ),
-            m
+            g
           );
-        var d = {};
+        var s = {};
         return (
           a.forEach(function (t) {
             var n = t.node,
               o = t.exists;
-            if (($(n.rules.canDrop(i, n, r), N), o)) {
-              $(!r(n.id).isTopLevelNode(), v);
+            if ((B(n.rules.canDrop(i, n, r), m), o)) {
+              B(!r(n.id).isTopLevelNode(), p);
               var a = r(n.id).descendants(!0);
-              $(!a.includes(i.id) && i.id !== n.id, E);
-              var s = n.data.parent && e.nodes[n.data.parent];
-              $(s.data.isCanvas, h),
-                $(s || (!s && !e.nodes[n.id]), b),
-                s.id !== i.id && (d[s.id] || (d[s.id] = []), d[s.id].push(n));
+              B(!a.includes(i.id) && i.id !== n.id, N);
+              var d = n.data.parent && e.nodes[n.data.parent];
+              B(d.data.isCanvas, v),
+                B(d || (!d && !e.nodes[n.id]), E),
+                d.id !== i.id && (s[d.id] || (s[d.id] = []), s[d.id].push(n));
             }
           }),
-          Object.keys(d).forEach(function (t) {
+          Object.keys(s).forEach(function (t) {
             var n = e.nodes[t];
-            $(n.rules.canMoveOut(d[t], n, r), O);
+            B(n.rules.canMoveOut(s[t], n, r), b);
           }),
           !0
         );
@@ -793,10 +795,10 @@ function Be(e, t) {
       }
     },
     toSerializedNode: function () {
-      return Me(n.data, e.options.resolver);
+      return He(n.data, e.options.resolver);
     },
     toNodeTree: function (e) {
-      var n = [t].concat(de(this.descendants(!0, e))).reduce(function (e, t) {
+      var n = [t].concat(se(this.descendants(!0, e))).reduce(function (e, t) {
         return (e[t] = r(t).get()), e;
       }, {});
       return { rootNodeId: t, nodes: n };
@@ -815,13 +817,13 @@ function Be(e, t) {
     },
   };
 }
-function He(e, t, n, r) {
+function $e(e, t, n, r) {
   for (
     var o = { parent: e, index: 0, where: 'before' },
       a = 0,
       i = 0,
-      d = 0,
       s = 0,
+      d = 0,
       c = 0,
       u = 0,
       l = 0,
@@ -832,9 +834,9 @@ function He(e, t, n, r) {
     var p = t[l];
     if (
       ((u = p.top + p.outerHeight),
-      (s = p.left + p.outerWidth / 2),
+      (d = p.left + p.outerWidth / 2),
       (c = p.top + p.outerHeight / 2),
-      !((i && p.left > i) || (d && c >= d) || (a && p.left + p.outerWidth < a)))
+      !((i && p.left > i) || (s && c >= s) || (a && p.left + p.outerWidth < a)))
     )
       if (((o.index = l), p.inFlow)) {
         if (r < c) {
@@ -843,26 +845,26 @@ function He(e, t, n, r) {
         }
         o.where = 'after';
       } else
-        r < u && (d = u),
-          n < s
-            ? ((i = s), (o.where = 'before'))
-            : ((a = s), (o.where = 'after'));
+        r < u && (s = u),
+          n < d
+            ? ((i = d), (o.where = 'before'))
+            : ((a = d), (o.where = 'after'));
   }
   return o;
 }
-var $e = function (e) {
+var Je = function (e) {
   return 'string' == typeof e ? e : e.name;
 };
 function We(e, t) {
   var n = e.data.type,
     r = {
-      id: e.id || T(),
+      id: e.id || O(),
       _hydrationTimestamp: Date.now(),
-      data: Y(
+      data: G(
         {
           type: n,
-          name: $e(n),
-          displayName: $e(n),
+          name: Je(n),
+          displayName: Je(n),
           props: {},
           custom: {},
           parent: null,
@@ -873,6 +875,7 @@ function We(e, t) {
         },
         e.data
       ),
+      info: {},
       related: {},
       events: { selected: !1, dragged: !1, hovered: !1, draggedOver: !1 },
       rules: {
@@ -892,44 +895,46 @@ function We(e, t) {
       dom: null,
     };
   if (r.data.type === ke || r.data.type === Canvas) {
-    var o = Y(Y({}, Te), r.data.props);
+    var o = G(G({}, we), r.data.props);
     (r.data.props = Object.keys(r.data.props).reduce(function (e, t) {
       return (
-        Object.keys(Te).includes(t)
-          ? (r.data[we[t] || t] = o[t])
+        Object.keys(we).includes(t)
+          ? (r.data[Te[t] || t] = o[t])
           : (e[t] = r.data.props[t]),
         e
       );
     }, {})),
-      (r.data.name = $e((n = r.data.type))),
-      (r.data.displayName = $e(n)),
+      (r.data.name = Je((n = r.data.type))),
+      (r.data.displayName = Je(n)),
       r.data.type === Canvas && ((r.data.isCanvas = !0), Ce());
   }
   t && t(r);
   var a = n.craft;
-  if (
-    a &&
-    ((r.data.displayName = a.displayName || a.name || r.data.displayName),
-    (r.data.props = Y(Y({}, a.props || a.defaultProps || {}), r.data.props)),
-    (r.data.custom = Y(Y({}, a.custom || {}), r.data.custom)),
-    null != a.isCanvas && (r.data.isCanvas = a.isCanvas),
-    a.rules &&
-      Object.keys(a.rules).forEach(function (e) {
-        ['canDrag', 'canDrop', 'canMoveIn', 'canMoveOut'].includes(e) &&
-          (r.rules[e] = a.rules[e]);
-      }),
-    a.related)
-  ) {
-    var i = { id: r.id, related: !0 };
-    Object.keys(a.related).forEach(function (e) {
-      r.related[e] = function (t) {
-        return q.createElement(V, i, q.createElement(a.related[e], t));
-      };
-    });
+  if (a) {
+    if (
+      ((r.data.displayName = a.displayName || a.name || r.data.displayName),
+      (r.data.props = G(G({}, a.props || a.defaultProps || {}), r.data.props)),
+      (r.data.custom = G(G({}, a.custom || {}), r.data.custom)),
+      null != a.isCanvas && (r.data.isCanvas = a.isCanvas),
+      a.rules &&
+        Object.keys(a.rules).forEach(function (e) {
+          ['canDrag', 'canDrop', 'canMoveIn', 'canMoveOut'].includes(e) &&
+            (r.rules[e] = a.rules[e]);
+        }),
+      a.related)
+    ) {
+      var i = { id: r.id, related: !0 };
+      Object.keys(a.related).forEach(function (e) {
+        r.related[e] = function (t) {
+          return A.createElement(U, i, A.createElement(a.related[e], t));
+        };
+      });
+    }
+    a.info && (r.info = a.info);
   }
   return r;
 }
-const Je = (e, t, n) => {
+const Ue = (e, t, n) => {
     let { type: r, props: o } = e;
     const a = ((e, t) =>
       'object' == typeof e && e.resolvedName
@@ -947,29 +952,29 @@ const Je = (e, t, n) => {
           null == r
             ? null
             : 'object' == typeof r && r.resolvedName
-            ? Je(r, t)
+            ? Ue(r, t)
             : 'children' === n && Array.isArray(r)
-            ? r.map((e) => ('string' == typeof e ? e : Je(e, t)))
+            ? r.map((e) => ('string' == typeof e ? e : Ue(e, t)))
             : r),
         e
       );
     }, {})),
       n && (o.key = n);
-    const i = { ...q.createElement(a, { ...o }) };
-    return { ...i, name: _e(t, i.type) };
+    const i = { ...A.createElement(a, { ...o }) };
+    return { ...i, name: Fe(t, i.type) };
   },
-  Ue = (e, t) => {
+  Ve = (e, t) => {
     const { type: n, props: r, ...o } = e;
-    $(
+    B(
       (void 0 !== n && 'string' == typeof n) ||
         (void 0 !== n && void 0 !== n.resolvedName),
       w
         .replace('%displayName%', e.displayName)
         .replace('%availableComponents%', Object.keys(t).join(', '))
     );
-    const { type: a, name: i, props: d } = Je(e, t),
+    const { type: a, name: i, props: s } = Ue(e, t),
       {
-        parent: s,
+        parent: d,
         custom: c,
         displayName: u,
         isCanvas: l,
@@ -980,16 +985,16 @@ const Je = (e, t, n) => {
       type: a,
       name: i,
       displayName: u || i,
-      props: d,
+      props: s,
       custom: c || {},
       isCanvas: !!l,
       hidden: !!p,
-      parent: s,
+      parent: d,
       linkedNodes: o.linkedNodes || o._childCanvas || {},
       nodes: f || [],
     };
   },
-  Ve = (e, t) => {
+  Ge = (e, t) => {
     if (t.length < 1) return { [e.id]: e };
     const n = t.map(({ rootNodeId: e }) => e),
       r = { ...e, data: { ...e.data, nodes: n } };
@@ -1005,23 +1010,23 @@ const Je = (e, t, n) => {
       { [e.id]: r }
     );
   },
-  Xe = (e, t) => ({ rootNodeId: e.id, nodes: Ve(e, t) });
-function Ye(e) {
+  Ke = (e, t) => ({ rootNodeId: e.id, nodes: Ge(e, t) });
+function Xe(e) {
   const t = e && e.options,
-    n = () => Ye(e);
+    n = () => Xe(e);
   return {
     getDropPlaceholder: (t, r, o, a = (t) => e.nodes[t.id].dom) => {
       const i = e.nodes[r],
-        d = n().node(i.id).isCanvas() ? i : e.nodes[i.data.parent];
-      if (!d) return;
-      const s = d.data.nodes || [],
-        c = He(
-          d,
-          s
-            ? s.reduce((t, n) => {
+        s = n().node(i.id).isCanvas() ? i : e.nodes[i.data.parent];
+      if (!s) return;
+      const d = s.data.nodes || [],
+        c = $e(
+          s,
+          d
+            ? d.reduce((t, n) => {
                 const r = a(e.nodes[n]);
                 if (r) {
-                  const e = { id: n, ...k(r) };
+                  const e = { id: n, ...T(r) };
                   t.push(e);
                 }
                 return t;
@@ -1030,17 +1035,17 @@ function Ye(e) {
           o.x,
           o.y
         ),
-        u = s.length && e.nodes[s[c.index]],
+        u = d.length && e.nodes[d[c.index]],
         l = { placement: { ...c, currentNode: u }, error: null };
       return (
-        Re(e.nodes, t).forEach(({ node: e, exists: t }) => {
+        qe(e.nodes, t).forEach(({ node: e, exists: t }) => {
           t &&
             n()
               .node(e.id)
               .isDraggable((e) => (l.error = e));
         }),
         n()
-          .node(d.id)
+          .node(s.id)
           .isDroppable(t, (e) => (l.error = e)),
         l
       );
@@ -1053,7 +1058,7 @@ function Ye(e) {
         e,
         this.node(e).toSerializedNode(),
       ]);
-      return qe(t);
+      return Re(t);
     },
     getEvent: (t) =>
       (function (e, t) {
@@ -1094,13 +1099,13 @@ function Ye(e) {
         let o = (function (e, t) {
             let n = e;
             return (
-              'string' == typeof n && (n = q.createElement(H, {}, n)),
+              'string' == typeof n && (n = A.createElement(H, {}, n)),
               We({ data: { type: n.type, props: { ...n.props } } }, (e) => {
                 t && t(e, n);
               })
             );
           })(t, (t, n) => {
-            const o = _e(e.options.resolver, t.data.type);
+            const o = Fe(e.options.resolver, t.data.type);
             (t.data.displayName = t.data.displayName || o),
               (t.data.name = o),
               r && r(t, n);
@@ -1109,22 +1114,22 @@ function Ye(e) {
         return (
           t.props &&
             t.props.children &&
-            (a = q.Children.toArray(t.props.children).reduce(
+            (a = A.Children.toArray(t.props.children).reduce(
               (e, t) => (
-                q.isValidElement(t) &&
+                A.isValidElement(t) &&
                   e.push(n().parseReactElement(t).toNodeTree(r)),
                 e
               ),
               []
             )),
-          Xe(o, a)
+          Ke(o, a)
         );
       },
     }),
     parseSerializedNode: (t) => ({
       toNode(r) {
-        const a = Ue(t, e.options.resolver);
-        $(a.type, f);
+        const a = Ve(t, e.options.resolver);
+        B(a.type, l);
         const i = 'string' == typeof r && r;
         return (
           i &&
@@ -1141,9 +1146,9 @@ function Ye(e) {
     parseFreshNode: (t) => ({
       toNode: (n) =>
         We(t, (t) => {
-          t.data.parent === l && (t.data.parent = d);
-          const r = _e(e.options.resolver, t.data.type);
-          $(null !== r, f),
+          t.data.parent === u && (t.data.parent = i);
+          const r = Fe(e.options.resolver, t.data.type);
+          B(null !== r, l),
             (t.data.displayName = t.data.displayName || r),
             (t.data.name = r),
             n && n(t);
@@ -1168,14 +1173,14 @@ function Ye(e) {
     getState: () => e,
   };
 }
-var Ge = (function (e) {
-    te(n, C);
-    var t = ie(n);
+var Ye = (function (e) {
+    ee(n, k);
+    var t = ae(n);
     function n() {
-      return K(this, n), t.apply(this, arguments);
+      return X(this, n), t.apply(this, arguments);
     }
     return (
-      Z(n, [
+      Q(n, [
         {
           key: 'handlers',
           value: function () {
@@ -1193,27 +1198,30 @@ var Ge = (function (e) {
       n
     );
   })(),
-  Ke = (function (e) {
-    te(n, S);
-    var t = ie(n);
+  Qe = (function (e) {
+    ee(n, C);
+    var t = ae(n);
     function n() {
-      return K(this, n), t.apply(this, arguments);
+      return X(this, n), t.apply(this, arguments);
     }
-    return Z(n);
+    return Q(n);
   })(),
-  Qe = (function () {
+  Ze = function (e) {
+    e.preventDefault();
+  },
+  et = (function () {
     function e(t, n) {
-      K(this, e),
-        ee(this, 'store', void 0),
-        ee(this, 'dragTarget', void 0),
-        ee(this, 'currentDropTargetId', void 0),
-        ee(this, 'currentDropTargetCanvasAncestorId', void 0),
-        ee(this, 'currentIndicator', null),
-        ee(this, 'currentTargetId', void 0),
-        ee(this, 'currentTargetChildDimensions', void 0),
-        ee(this, 'dragError', void 0),
-        ee(this, 'draggedNodes', void 0),
-        ee(this, 'onScrollListener', void 0),
+      X(this, e),
+        Z(this, 'store', void 0),
+        Z(this, 'dragTarget', void 0),
+        Z(this, 'currentDropTargetId', void 0),
+        Z(this, 'currentDropTargetCanvasAncestorId', void 0),
+        Z(this, 'currentIndicator', null),
+        Z(this, 'currentTargetId', void 0),
+        Z(this, 'currentTargetChildDimensions', void 0),
+        Z(this, 'dragError', void 0),
+        Z(this, 'draggedNodes', void 0),
+        Z(this, 'onScrollListener', void 0),
         (this.store = t),
         (this.dragTarget = n),
         (this.currentDropTargetId = null),
@@ -1225,21 +1233,23 @@ var Ge = (function (e) {
         (this.draggedNodes = this.getDraggedNodes()),
         this.validateDraggedNodes(),
         (this.onScrollListener = this.onScroll.bind(this)),
-        window.addEventListener('scroll', this.onScrollListener, !0);
+        window.addEventListener('scroll', this.onScrollListener, !0),
+        window.addEventListener('dragover', Ze, !1);
     }
     return (
-      Z(e, [
+      Q(e, [
         {
           key: 'cleanup',
           value: function () {
-            window.removeEventListener('scroll', this.onScrollListener, !0);
+            window.removeEventListener('scroll', this.onScrollListener, !0),
+              window.removeEventListener('dragover', Ze, !1);
           },
         },
         {
           key: 'onScroll',
           value: function (e) {
             var t = e.target,
-              n = this.store.query.node(d).get();
+              n = this.store.query.node(i).get();
             t instanceof Element &&
               n &&
               n.dom &&
@@ -1250,7 +1260,7 @@ var Ge = (function (e) {
         {
           key: 'getDraggedNodes',
           value: function () {
-            return Re(
+            return qe(
               this.store.query.getNodes(),
               'new' === this.dragTarget.type
                 ? this.dragTarget.tree.nodes[this.dragTarget.tree.rootNodeId]
@@ -1302,7 +1312,7 @@ var Ge = (function (e) {
               ? n
               : e.data.nodes.reduce(function (e, n) {
                   var r = t.store.query.node(n).get().dom;
-                  return r && e.push(Y({ id: n }, k(r))), e;
+                  return r && e.push(G({ id: n }, T(r))), e;
                 }, []);
           },
         },
@@ -1338,14 +1348,14 @@ var Ge = (function (e) {
               ((this.currentDropTargetId = e),
               (this.currentDropTargetCanvasAncestorId = r.id),
               r.data.parent &&
-                this.isNearBorders(k(r.dom), t, n) &&
+                this.isNearBorders(T(r.dom), t, n) &&
                 !this.store.query.node(r.id).isLinkedNode() &&
                 (r = this.store.query.node(r.data.parent).get()),
               r)
             ) {
               (this.currentTargetChildDimensions = this.getChildDimensions(r)),
                 (this.currentTargetId = r.id);
-              var o = He(r, this.currentTargetChildDimensions, t, n);
+              var o = $e(r, this.currentTargetChildDimensions, t, n);
               if (this.isDiff(o)) {
                 var a = this.dragError;
                 a ||
@@ -1358,10 +1368,10 @@ var Ge = (function (e) {
                     }
                   );
                 var i = r.data.nodes[o.index],
-                  d = i && this.store.query.node(i).get();
+                  s = i && this.store.query.node(i).get();
                 return (
                   (this.currentIndicator = {
-                    placement: Y(Y({}, o), {}, { currentNode: d }),
+                    placement: G(G({}, o), {}, { currentNode: s }),
                     error: a,
                   }),
                   this.currentIndicator
@@ -1380,77 +1390,45 @@ var Ge = (function (e) {
       e
     );
   })();
-ee(Qe, 'BORDER_OFFSET', 10);
-var Ze = function (e, t) {
-    if (
-      1 === t.length ||
-      (arguments.length > 2 && void 0 !== arguments[2] && arguments[2])
-    ) {
-      var n = t[0].getBoundingClientRect(),
-        r = n.width,
-        o = n.height,
-        a = t[0].cloneNode(!0);
-      return (
-        (a.style.position = 'fixed'),
-        (a.style.left = '-100%'),
-        (a.style.top = '-100%'),
-        (a.style.width = ''.concat(r, 'px')),
-        (a.style.height = ''.concat(o, 'px')),
-        (a.style.pointerEvents = 'none'),
-        document.body.appendChild(a),
-        e.dataTransfer.setDragImage(a, 0, 0),
-        a
-      );
-    }
-    var i = document.createElement('div');
+Z(et, 'BORDER_OFFSET', 10);
+var tt = function (e, t) {
+    e.dataTransfer.effectAllowed = 'none';
+    var n = document.createElement('div');
     return (
-      (i.style.position = 'fixed'),
-      (i.style.left = '-100%'),
-      (i.style.top = '-100%'),
-      (i.style.width = '100%'),
-      (i.style.height = '100%'),
-      (i.style.pointerEvents = 'none'),
-      t.forEach(function (e) {
-        var t = e.getBoundingClientRect(),
-          n = t.width,
-          r = t.height,
-          o = t.top,
-          a = t.left,
-          d = e.cloneNode(!0);
-        (d.style.position = 'absolute'),
-          (d.style.left = ''.concat(a, 'px')),
-          (d.style.top = ''.concat(o, 'px')),
-          (d.style.width = ''.concat(n, 'px')),
-          (d.style.height = ''.concat(r, 'px')),
-          i.appendChild(d);
-      }),
-      document.body.appendChild(i),
-      e.dataTransfer.setDragImage(i, e.clientX, e.clientY),
-      i
+      (n.style.width = '1px'),
+      (n.style.height = '1px'),
+      (n.style.position = 'absolute'),
+      (n.style.left = '-100%'),
+      (n.style.top = '-100%'),
+      (n.style.opacity = '0'),
+      document.body.appendChild(n),
+      e.dataTransfer.setDragImage(n, 0, 0),
+      console.log('invisibleElement', n),
+      n
     );
   },
-  et = (function (e) {
-    te(n, Ge);
-    var t = ie(n);
+  nt = (function (e) {
+    ee(n, Ye);
+    var t = ae(n);
     function n() {
       var e;
-      K(this, n);
+      X(this, n);
       for (var r = arguments.length, o = new Array(r), a = 0; a < r; a++)
         o[a] = arguments[a];
       return (
-        ee(
-          ae((e = t.call.apply(t, [this].concat(o)))),
+        Z(
+          oe((e = t.call.apply(t, [this].concat(o)))),
           'draggedElementShadow',
           void 0
         ),
-        ee(ae(e), 'dragTarget', void 0),
-        ee(ae(e), 'positioner', null),
-        ee(ae(e), 'currentSelectedElementIds', []),
+        Z(oe(e), 'dragTarget', void 0),
+        Z(oe(e), 'positioner', null),
+        Z(oe(e), 'currentSelectedElementIds', []),
         e
       );
     }
     return (
-      Z(n, [
+      Q(n, [
         {
           key: 'onDisable',
           value: function () {
@@ -1493,14 +1471,14 @@ var Ze = function (e, t) {
                     var o = t.query.getEvent('selected').all(),
                       a = e.options.isMultiSelectEnabled(n),
                       i = e.currentSelectedElementIds.includes(r),
-                      d = de(o);
+                      s = se(o);
                     a && i
-                      ? (d.splice(d.indexOf(r), 1),
-                        t.actions.setNodeEvent('selected', d))
+                      ? (s.splice(s.indexOf(r), 1),
+                        t.actions.setNodeEvent('selected', s))
                       : !a &&
                         o.length > 1 &&
-                        t.actions.setNodeEvent('selected', (d = [r])),
-                      (e.currentSelectedElementIds = d);
+                        t.actions.setNodeEvent('selected', (s = [r])),
+                      (e.currentSelectedElementIds = s);
                   });
                 return function () {
                   o(), a();
@@ -1511,9 +1489,16 @@ var Ze = function (e, t) {
                   e.craft.stopPropagation(),
                     t.actions.setNodeEvent('hovered', r);
                 });
-                return function () {
-                  o();
-                };
+                return (
+                  e.options.removeHoverOnMouseleave &&
+                    e.addCraftEventListener(n, 'mouseleave', function (e) {
+                      e.craft.stopPropagation(),
+                        t.actions.setNodeEvent('hovered', null);
+                    }),
+                  function () {
+                    o();
+                  }
+                );
               },
               drop: function (n, r) {
                 var o = e.addCraftEventListener(n, 'dragover', function (n) {
@@ -1539,31 +1524,27 @@ var Ze = function (e, t) {
                   a(), o();
                 };
               },
-              drag: function (r, o) {
-                if (!t.query.node(o).isDraggable()) return function () {};
-                r.setAttribute('draggable', 'true');
-                var a = e.addCraftEventListener(r, 'dragstart', function (r) {
-                    r.craft.stopPropagation();
-                    var a = t.query,
-                      i = t.actions,
-                      d = a.getEvent('selected').all(),
-                      s = e.options.isMultiSelectEnabled(r);
-                    e.currentSelectedElementIds.includes(o) ||
-                      ((d = s ? [].concat(de(d), [o]) : [o]),
-                      t.actions.setNodeEvent('selected', d)),
-                      i.setNodeEvent('dragged', d);
-                    var c = d.map(function (e) {
-                      return a.node(e).get().dom;
-                    });
-                    (e.draggedElementShadow = Ze(
-                      r,
-                      c,
-                      n.forceSingleDragShadow
-                    )),
-                      (e.dragTarget = { type: 'existing', nodes: d }),
-                      (e.positioner = new Qe(e.options.store, e.dragTarget));
+              drag: function (n, r) {
+                if (!t.query.node(r).isDraggable()) return function () {};
+                n.setAttribute('draggable', 'true');
+                var o = e.addCraftEventListener(n, 'dragstart', function (n) {
+                    n.craft.stopPropagation();
+                    var o = t.query,
+                      a = t.actions,
+                      i = o.getEvent('selected').all(),
+                      s = e.options.isMultiSelectEnabled(n);
+                    e.currentSelectedElementIds.includes(r) ||
+                      ((i = s ? [].concat(se(i), [r]) : [r]),
+                      t.actions.setNodeEvent('selected', i)),
+                      a.setNodeEvent('dragged', i),
+                      i.map(function (e) {
+                        return o.node(e).get().dom;
+                      }),
+                      (e.draggedElementShadow = tt(n)),
+                      (e.dragTarget = { type: 'existing', nodes: i }),
+                      (e.positioner = new et(e.options.store, e.dragTarget));
                   }),
-                  i = e.addCraftEventListener(r, 'dragend', function (n) {
+                  a = e.addCraftEventListener(n, 'dragend', function (n) {
                     n.craft.stopPropagation(),
                       e.dropElement(function (e, n) {
                         'new' !== e.type &&
@@ -1576,28 +1557,24 @@ var Ze = function (e, t) {
                       });
                   });
                 return function () {
-                  r.setAttribute('draggable', 'false'), a(), i();
+                  n.setAttribute('draggable', 'false'), o(), a();
                 };
               },
-              create: function (r, o, a) {
-                r.setAttribute('draggable', 'true');
-                var i = e.addCraftEventListener(r, 'dragstart', function (r) {
-                    var a;
-                    if ((r.craft.stopPropagation(), 'function' == typeof o)) {
-                      var i = o();
-                      a = q.isValidElement(i)
-                        ? t.query.parseReactElement(i).toNodeTree()
-                        : i;
-                    } else a = t.query.parseReactElement(o).toNodeTree();
-                    (e.draggedElementShadow = Ze(
-                      r,
-                      [r.currentTarget],
-                      n.forceSingleDragShadow
-                    )),
-                      (e.dragTarget = { type: 'new', tree: a }),
-                      (e.positioner = new Qe(e.options.store, e.dragTarget));
+              create: function (n, r, o) {
+                n.setAttribute('draggable', 'true');
+                var a = e.addCraftEventListener(n, 'dragstart', function (n) {
+                    var o;
+                    if ((n.craft.stopPropagation(), 'function' == typeof r)) {
+                      var a = r();
+                      o = A.isValidElement(a)
+                        ? t.query.parseReactElement(a).toNodeTree()
+                        : a;
+                    } else o = t.query.parseReactElement(r).toNodeTree();
+                    (e.draggedElementShadow = tt(n)),
+                      (e.dragTarget = { type: 'new', tree: o }),
+                      (e.positioner = new et(e.options.store, e.dragTarget));
                   }),
-                  d = e.addCraftEventListener(r, 'dragend', function (n) {
+                  i = e.addCraftEventListener(n, 'dragend', function (n) {
                     n.craft.stopPropagation(),
                       e.dropElement(function (e, n) {
                         'existing' !== e.type &&
@@ -1607,11 +1584,11 @@ var Ze = function (e, t) {
                             n.placement.index +
                               ('after' === n.placement.where ? 1 : 0)
                           ),
-                          a && W(a.onCreate) && a.onCreate(e.tree));
+                          o && $(o.onCreate) && o.onCreate(e.tree));
                       });
                   });
                 return function () {
-                  r.removeAttribute('draggable'), i(), d();
+                  n.removeAttribute('draggable'), a(), i();
                 };
               },
             };
@@ -1641,24 +1618,24 @@ var Ze = function (e, t) {
       n
     );
   })();
-function tt(e, t, n) {
+function rt(e, t, n) {
   var r = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 2,
     o = 0,
     a = 0,
     i = 0,
-    d = 0,
-    s = e.where;
+    s = 0,
+    d = e.where;
   return (
     n
       ? n.inFlow
         ? ((i = n.outerWidth),
-          (d = r),
-          (o = 'before' === s ? n.top : n.bottom),
+          (s = r),
+          (o = 'before' === d ? n.top : n.bottom),
           (a = n.left))
         : ((i = r),
-          (d = n.outerHeight),
+          (s = n.outerHeight),
           (o = n.top),
-          (a = 'before' === s ? n.left : n.left + n.outerWidth))
+          (a = 'before' === d ? n.left : n.left + n.outerWidth))
       : t &&
         ((o = t.top + t.padding.top),
         (a = t.left + t.padding.left),
@@ -1668,17 +1645,17 @@ function tt(e, t, n) {
           t.padding.left -
           t.margin.left -
           t.margin.right),
-        (d = r)),
+        (s = r)),
     {
       top: ''.concat(o, 'px'),
       left: ''.concat(a, 'px'),
       width: ''.concat(i, 'px'),
-      height: ''.concat(d, 'px'),
+      height: ''.concat(s, 'px'),
     }
   );
 }
-ee(et, 'forceSingleDragShadow', j() && D());
-const nt = () => {
+Z(nt, 'forceSingleDragShadow', S() && j());
+const ot = () => {
     const { indicator: e, indicatorOptions: t, enabled: n } = ve((e) => ({
         indicator: e.indicator,
         indicatorOptions: e.options.indicator,
@@ -1686,34 +1663,36 @@ const nt = () => {
       })),
       r = pe();
     return (
-      F(() => {
+      _(() => {
         r && (n ? r.enable() : r.disable());
       }, [n, r]),
       e
-        ? q.createElement(I, {
+        ? A.createElement(D, {
+            className: t.className,
             style: {
-              ...tt(
+              ...rt(
                 e.placement,
-                k(e.placement.parent.dom),
-                e.placement.currentNode && k(e.placement.currentNode.dom),
+                T(e.placement.parent.dom),
+                e.placement.currentNode && T(e.placement.currentNode.dom),
                 t.thickness
               ),
               backgroundColor: e.error ? t.error : t.success,
               transition: t.transition || '0.2s ease-in',
+              ...(t.style ?? {}),
             },
             parentDom: e.placement.parent.dom,
           })
         : null
     );
   },
-  rt = ({ children: e }) => {
-    const t = L(le),
-      n = _(() => t.query.getOptions().handlers(t), [t]);
+  at = ({ children: e }) => {
+    const t = q(le),
+      n = L(() => t.query.getOptions().handlers(t), [t]);
     return n
-      ? q.createElement(fe.Provider, { value: n }, q.createElement(nt, null), e)
+      ? A.createElement(fe.Provider, { value: n }, A.createElement(ot, null), e)
       : null;
   },
-  ot = {
+  it = {
     nodes: {},
     events: {
       dragged: new Set(),
@@ -1730,14 +1709,18 @@ const nt = () => {
       enabled: !0,
       indicator: { error: 'red', success: 'rgb(98, 196, 98)' },
       handlers: (e) =>
-        new et({ store: e, isMultiSelectEnabled: (e) => !!e.metaKey }),
+        new nt({
+          store: e,
+          removeHoverOnMouseleave: !1,
+          isMultiSelectEnabled: (e) => !!e.metaKey,
+        }),
       normalizeNodes: () => {},
     },
   },
-  at = {
+  st = {
     methods: function (e, t) {
-      return Y(
-        Y(
+      return G(
+        G(
           {},
           (function (e, t) {
             var n = function (t, n, o) {
@@ -1745,14 +1728,14 @@ const nt = () => {
                   ((function n(r, o) {
                     var a = t.nodes[r];
                     'string' != typeof a.data.type &&
-                      $(
+                      B(
                         e.options.resolver[a.data.name],
-                        f.replace('%node_type%', ''.concat(a.data.type.name))
+                        l.replace('%node_type%', ''.concat(a.data.type.name))
                       ),
-                      (e.nodes[r] = Y(
-                        Y({}, a),
+                      (e.nodes[r] = G(
+                        G({}, a),
                         {},
-                        { data: Y(Y({}, a.data), {}, { parent: o }) }
+                        { data: G(G({}, a.data), {}, { parent: o }) }
                       )),
                       a.data.nodes.length > 0 &&
                         (delete e.nodes[r].data.props.children,
@@ -1763,34 +1746,30 @@ const nt = () => {
                         return n(e, a.id);
                       });
                   })(t.rootNodeId, n),
-                  n)
+                  n || t.rootNodeId !== i)
                 ) {
                   var a = r(n);
                   if ('child' !== o.type)
                     a.data.linkedNodes[o.id] = t.rootNodeId;
                   else {
-                    var i = o.index;
-                    null != i
-                      ? a.data.nodes.splice(i, 0, t.rootNodeId)
+                    var s = o.index;
+                    null != s
+                      ? a.data.nodes.splice(s, 0, t.rootNodeId)
                       : a.data.nodes.push(t.rootNodeId);
                   }
-                } else
-                  $(
-                    t.rootNodeId === d,
-                    'Cannot add non-root Node without a parent'
-                  );
+                }
               },
               r = function (t) {
-                $(t, u);
+                B(t, c);
                 var n = e.nodes[t];
-                return $(n, s), n;
+                return B(n, s), n;
               },
               a = function t(n) {
                 var r = e.nodes[n],
                   o = e.nodes[r.data.parent];
                 if (
                   (r.data.nodes &&
-                    de(r.data.nodes).forEach(function (e) {
+                    se(r.data.nodes).forEach(function (e) {
                       return t(e);
                     }),
                   r.data.linkedNodes &&
@@ -1835,7 +1814,7 @@ const nt = () => {
                   }),
                   (a = e)),
                   a.forEach(function (e) {
-                    n({ nodes: ee({}, e.id, e), rootNodeId: e.id }, t, {
+                    n({ nodes: Z({}, e.id, e), rootNodeId: e.id }, t, {
                       type: 'child',
                       index: r,
                     });
@@ -1849,11 +1828,11 @@ const nt = () => {
                   arguments.length > 1 &&
                   void 0 !== arguments[1] &&
                   arguments[1];
-                Re(e.nodes, n, { existOnly: !0, idOnly: !0 }).forEach(function (
+                qe(e.nodes, n, { existOnly: !0, idOnly: !0 }).forEach(function (
                   e
                 ) {
                   var n = e.node;
-                  $(!!r || !t.node(n.id).isTopLevelNode(), c), a(n.id);
+                  B(!!r || !t.node(n.id).isTopLevelNode(), d), a(n.id);
                 });
               },
               deserialize: function (e) {
@@ -1861,7 +1840,7 @@ const nt = () => {
                   r = Object.keys(n).map(function (e) {
                     var r = e;
                     return (
-                      e === l && (r = d),
+                      e === u && (r = i),
                       [
                         r,
                         t.parseSerializedNode(n[e]).toNode(function (e) {
@@ -1870,30 +1849,30 @@ const nt = () => {
                       ]
                     );
                   });
-                this.replaceNodes(qe(r));
+                this.replaceNodes(Re(r));
               },
               move: function (n, r, o) {
-                var a = Re(e.nodes, n, { existOnly: !0 }),
+                var a = qe(e.nodes, n, { existOnly: !0 }),
                   i = e.nodes[r],
-                  d = new Set();
+                  s = new Set();
                 a.forEach(function (n, a) {
-                  var s = n.node,
-                    c = s.id,
-                    u = s.data.parent;
+                  var d = n.node,
+                    c = d.id,
+                    u = d.data.parent;
                   t.node(r).isDroppable([c], function (e) {
                     throw new Error(e);
                   }),
-                    e.options.onBeforeMoveEnd(s, i, e.nodes[u]);
+                    e.options.onBeforeMoveEnd(d, i, e.nodes[u]);
                   var l = e.nodes[u].data.nodes;
-                  d.add(l);
+                  s.add(l);
                   var f = l.indexOf(c);
                   (l[f] = '$$'),
                     i.data.nodes.splice(o + a, 0, c),
                     (e.nodes[c].data.parent = r);
                 }),
-                  d.forEach(function (e) {
+                  s.forEach(function (e) {
                     var t = e.length;
-                    de(e)
+                    se(e)
                       .reverse()
                       .forEach(function (n, r) {
                         '$$' === n && e.splice(t - 1 - r, 1);
@@ -1924,7 +1903,7 @@ const nt = () => {
                   (e.events[t] = new Set()),
                   n)
                 ) {
-                  var r = Re(e.nodes, n, { idOnly: !0, existOnly: !0 }),
+                  var r = qe(e.nodes, n, { idOnly: !0, existOnly: !0 }),
                     o = new Set(
                       r.map(function (e) {
                         return e.node.id;
@@ -1937,7 +1916,7 @@ const nt = () => {
                 }
               },
               setCustom: function (t, n) {
-                Re(e.nodes, t, { idOnly: !0, existOnly: !0 }).forEach(function (
+                qe(e.nodes, t, { idOnly: !0, existOnly: !0 }).forEach(function (
                   t
                 ) {
                   return n(e.nodes[t.node.id].data.custom);
@@ -1957,7 +1936,7 @@ const nt = () => {
                 e.nodes[t].data.hidden = n;
               },
               setProp: function (t, n) {
-                Re(e.nodes, t, { idOnly: !0, existOnly: !0 }).forEach(function (
+                qe(e.nodes, t, { idOnly: !0, existOnly: !0 }).forEach(function (
                   t
                 ) {
                   return n(e.nodes[t.node.id].data.props);
@@ -1965,7 +1944,7 @@ const nt = () => {
               },
               selectNode: function (t) {
                 if (t) {
-                  var n = Re(e.nodes, t, { idOnly: !0, existOnly: !0 });
+                  var n = qe(e.nodes, t, { idOnly: !0, existOnly: !0 });
                   this.setNodeEvent(
                     'selected',
                     n.map(function (e) {
@@ -1977,7 +1956,7 @@ const nt = () => {
               },
               hoverNode: function (t) {
                 if (t) {
-                  var n = Re(e.nodes, t, { idOnly: !0, existOnly: !0 });
+                  var n = qe(e.nodes, t, { idOnly: !0, existOnly: !0 });
                   this.setNodeEvent(
                     'hovered',
                     n.map(function (e) {
@@ -1992,7 +1971,7 @@ const nt = () => {
         {},
         {
           setState: function (t) {
-            var n = oe(this, Le);
+            var n = re(this, Le);
             t(e, n);
           },
         }
@@ -2024,22 +2003,27 @@ const nt = () => {
         });
     },
   },
-  it = (e, t) => x(at, { ...ot, options: { ...ot.options, ...e } }, Ye, t),
-  dt = ({ children: e, ...t }) => {
+  dt = (e, t) => I(st, { ...it, options: { ...it.options, ...e } }, Xe, t),
+  ct = ({ children: e, ...t }) => {
     void 0 !== t.resolver &&
-      $('object' == typeof t.resolver && !Array.isArray(t.resolver), P);
+      B(
+        'object' == typeof t.resolver &&
+          !Array.isArray(t.resolver) &&
+          null !== t.resolver,
+        x
+      );
     const n = M(t),
-      r = it(n.current, (e, t, n, r, o) => {
+      r = dt(n.current, (e, t, n, r, o) => {
         if (!n) return;
         const { patches: a, ...i } = n;
         for (let n = 0; n < a.length; n++) {
-          const { path: d } = a[n],
-            s = d.length > 2 && 'nodes' === d[0] && 'data' === d[2];
+          const { path: s } = a[n],
+            d = s.length > 2 && 'nodes' === s[0] && 'data' === s[2];
           if (
-            ([A.IGNORE, A.THROTTLE].includes(i.type) &&
+            ([P.IGNORE, P.THROTTLE].includes(i.type) &&
               i.params &&
               (i.type = i.params[0]),
-            ['setState', 'deserialize'].includes(i.type) || s)
+            ['setState', 'deserialize'].includes(i.type) || d)
           ) {
             o((n) => {
               e.options.normalizeNodes && e.options.normalizeNodes(n, t, i, r);
@@ -2049,16 +2033,15 @@ const nt = () => {
         }
       });
     return (
-      F(() => {
+      _(() => {
         r &&
-          t &&
           void 0 !== t.enabled &&
           r.query.getOptions().enabled !== t.enabled &&
           r.actions.setOptions((e) => {
             e.enabled = t.enabled;
           });
       }, [r, t.enabled]),
-      F(() => {
+      _(() => {
         r.subscribe(
           (e) => ({ json: r.query.serialize() }),
           () => {
@@ -2067,79 +2050,79 @@ const nt = () => {
         );
       }, [r]),
       r
-        ? q.createElement(
+        ? A.createElement(
             le.Provider,
             { value: r },
-            q.createElement(rt, null, e)
+            A.createElement(at, null, e)
           )
         : null
     );
   };
-var st = ['events', 'data'],
-  ct = ['nodes'],
-  ut = ['nodes'],
-  lt = ['_hydrationTimestamp', 'rules'],
-  ft = ['_hydrationTimestamp', 'rules'],
-  pt = function (e) {
+var ut = ['events', 'data'],
+  lt = ['nodes'],
+  ft = ['nodes'],
+  pt = ['_hydrationTimestamp', 'rules'],
+  vt = ['_hydrationTimestamp', 'rules'],
+  ht = function (e) {
     var t = e.events,
       n = e.data,
       r = n.nodes,
       o = n.linkedNodes,
-      a = oe(e, st),
+      a = re(e, ut),
       i = We(J(e));
     return {
-      node: (e = Y(
-        Y(Y({}, i), a),
+      node: (e = G(
+        G(G({}, i), a),
         {},
-        { events: Y(Y({}, i.events), t), dom: e.dom || i.dom }
+        { events: G(G({}, i.events), t), dom: e.dom || i.dom }
       )),
       childNodes: r,
       linkedNodes: o,
     };
   },
-  vt = function (e, t) {
+  yt = function (e, t) {
     var n = t.nodes,
-      r = oe(t, ct),
+      r = re(t, lt),
       o = e.nodes,
-      a = oe(e, ut);
+      a = re(e, ft);
     expect(a).toEqual(r);
     var i = Object.keys(n).reduce(function (e, t) {
-        var r = oe(n[t], lt);
+        var r = re(n[t], pt);
         return (e[t] = r), e;
       }, {}),
-      d = Object.keys(o).reduce(function (e, t) {
-        var n = oe(o[t], ft);
+      s = Object.keys(o).reduce(function (e, t) {
+        var n = re(o[t], vt);
         return (e[t] = n), e;
       }, {});
-    expect(d).toEqual(i);
+    expect(s).toEqual(i);
   },
-  ht = function (e) {
+  gt = function (e) {
     var t = {};
     return (
       (function e(n) {
-        var r = pt(n),
+        var r = ht(n),
           o = r.node,
           a = r.childNodes,
           i = r.linkedNodes;
         (t[o.id] = o),
           a &&
             a.forEach(function (n, r) {
-              var a = pt(n),
+              var a = ht(n),
                 i = a.node,
-                d = a.childNodes,
-                s = a.linkedNodes;
+                s = a.childNodes,
+                d = a.linkedNodes;
               (i.data.parent = o.id),
                 (t[i.id] = i),
                 (o.data.nodes[r] = i.id),
                 e(
-                  Y(
-                    Y({}, i),
+                  G(
+                    G({}, i),
                     {},
                     {
-                      data: Y(
-                        Y({}, i.data),
+                      data: G(
+                        G({}, i.data),
                         {},
-                        { nodes: d || [], linkedNodes: s || {} }
+                        { nodes: s || [], linkedNodes: d || {} }
                       ),
                     }
                   )
@@ -2147,22 +2130,22 @@ var st = ['events', 'data'],
             }),
           i &&
             Object.keys(i).forEach(function (n) {
-              var r = pt(i[n]),
+              var r = ht(i[n]),
                 a = r.node,
-                d = r.childNodes,
-                s = r.linkedNodes;
+                s = r.childNodes,
+                d = r.linkedNodes;
               (o.data.linkedNodes[n] = a.id),
                 (a.data.parent = o.id),
                 (t[a.id] = a),
                 e(
-                  Y(
-                    Y({}, a),
+                  G(
+                    G({}, a),
                     {},
                     {
-                      data: Y(
-                        Y({}, a.data),
+                      data: G(
+                        G({}, a.data),
                         {},
-                        { nodes: d || [], linkedNodes: s || {} }
+                        { nodes: s || [], linkedNodes: d || {} }
                       ),
                     }
                   )
@@ -2172,43 +2155,46 @@ var st = ['events', 'data'],
       t
     );
   },
-  yt = function () {
+  mt = function () {
     var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {},
       t = e.nodes,
       n = e.events;
-    return Y(
-      Y(Y({}, ot), e),
+    return G(
+      G(G({}, it), e),
       {},
-      { nodes: t ? ht(t) : {}, events: Y(Y({}, ot.events), n || {}) }
+      { nodes: t ? gt(t) : {}, events: G(G({}, it.events), n || {}) }
     );
   };
 export {
-  at as ActionMethodsWithConfig,
+  st as ActionMethodsWithConfig,
   Canvas,
-  Ge as CoreEventHandlers,
-  et as DefaultEventHandlers,
-  Ke as DerivedCoreEventHandlers,
-  dt as Editor,
+  Ye as CoreEventHandlers,
+  nt as DefaultEventHandlers,
+  Qe as DerivedCoreEventHandlers,
+  ct as Editor,
   ke as Element,
-  rt as Events,
+  at as Events,
   je as Frame,
   Oe as NodeElement,
   Be as NodeHelpers,
-  V as NodeProvider,
+  U as NodeProvider,
   De as NodeSelectorType,
-  Ye as QueryMethods,
+  et as Positioner,
+  Xe as QueryMethods,
   Pe as connectEditor,
   Ae as connectNode,
-  ht as createTestNodes,
-  yt as createTestState,
-  Te as defaultElementProps,
+  tt as createShadow,
+  gt as createTestNodes,
+  mt as createTestState,
+  we as defaultElementProps,
   Ce as deprecateCanvasComponent,
-  ot as editorInitialState,
-  we as elementPropToNodeData,
-  vt as expectEditorState,
-  Me as serializeNode,
+  it as editorInitialState,
+  Te as elementPropToNodeData,
+  yt as expectEditorState,
+  He as serializeNode,
   xe as useEditor,
-  it as useEditorStore,
+  dt as useEditorStore,
   pe as useEventHandler,
   me as useNode,
 };
+//# sourceMappingURL=index.js.map

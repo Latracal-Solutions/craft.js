@@ -1,7 +1,7 @@
 'use strict';
 'undefined' != typeof window &&
   (window.__CRAFTJS__ || (window.__CRAFTJS__ = {}),
-  (window.__CRAFTJS__['@craftjs/core'] = '0.2.13')),
+  (window.__CRAFTJS__['@craftjs/core'] = '0.2.14')),
   Object.defineProperty(exports, '__esModule', { value: !0 });
 var e = require('@craftjs/utils'),
   t = require('react'),
@@ -1812,6 +1812,9 @@ const Oe = () => {
               },
               addNodeTree: function (e, t, n) {
                 r(e, t, { type: 'child', index: n });
+              },
+              addLinkedNodeTree: function (e, t, n) {
+                r(e, t, { type: 'linked', id: n });
               },
               delete: function (r) {
                 var o =

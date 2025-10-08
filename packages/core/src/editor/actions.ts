@@ -210,6 +210,17 @@ const Methods = (
     },
 
     /**
+     * Add a NodeTree to the editor
+     *
+     * @param tree
+     * @param parentId
+     * @param index
+     */
+    addLinkedNodeTree(tree: NodeTree, parentId?: NodeId, id?: string) {
+      addNodeTreeToParent(tree, parentId, { type: 'linked', id });
+    },
+
+    /**
      * Delete a Node
      * @param id
      */
